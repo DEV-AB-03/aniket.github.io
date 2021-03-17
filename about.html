@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>ABOUT</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap" rel="stylesheet">
+        <style>
+            body{
+                background-image: url("p8.jpeg");
+                height: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+        <script>
+            window.onscroll = function() {scrollFunction()};
+            
+            function scrollFunction() {
+              if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+                document.getElementById("header").style.visibility = "visible";
+              } 
+              else {
+                document.getElementById("header").style.visibility = "hidden";
+              }
+            }
+            function myFunction() {
+                var element = document.body;
+                element.classList.toggle("dark-mode");
+            }
+            </script>  
+    </head>
+    <body>
+        <body>
+            <div id="header">
+            <nav>
+                <div class="logo">ANIKET BAIDYA</div>
+            </nav>  
+            </div>
+            <nav>
+                <ul class="menu">
+                    <a href="port.html"><li>Home</li></a>
+                    <a href="about.html"><li><span style="color: gold;">About</span></li></a>
+                    <a href="work.html"><li>Work</li></a>
+                </ul>
+                <ul class="contact">
+                    <a href="contact.html"><li>Contact</li></a>
+                </ul>
+                <div class="burger">
+                <button onclick="myFunction()" id="dark">
+                    <input type="checkbox">
+                </button>
+                </div>
+            </nav>
+            <br>
+        <div class="first">
+        <h1><span style="color:white; font-size: larger;">I build value by design and quality.</span></h1>
+        <p>
+            I’m <span style="color: gold;">Aniket Baidya</span>, but you can just call me <span style="color: gold;">Aniket</span>.
+        </p>
+        <br>
+        <p>
+            Originally hailing from the state of Gujarat and living in the city of Ahmedabad for the last decade or so I’ve been honing my skills in design, production and management roles building products for the web, mobile, and, more recently, VR & AR.<br><br><br>
+
+            I strive to create elegant solutions that surprise and delight users, while keeping complex technical dependencies in mind for implementation, scalability and developer sanity.<br><br>
+
+            I’ve worked with small, agile teams on skunkworks projects and larger development teams with product lifecycles spanning multiple years.<br><br>
+
+            Depending on the team, resources and deliverables I’ve worn many hats over the years - holding titles like <span style="color:gold; font-size: larger;">Product Designer, UI Designer, UX Designer, Front-end Developer, Growth Lead, Producer, Product Manager & Product Owner.</span><br><br>
+
+            Have an interesting project or kick-ass idea??? <br><br>
+        </p>
+        <a href="contact.html"><span style="color: gold;">Let's talk.</span></a><br>
+        </div>
+    </body>
+    </html>

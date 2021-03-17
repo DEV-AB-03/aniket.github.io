@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HOME</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap" rel="stylesheet">
+        <script>
+            window.onscroll = function() {scrollFunction()};
+            
+            function scrollFunction() {
+              if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+                document.getElementById("header").style.visibility = "visible";
+              } 
+              else {
+                document.getElementById("header").style.visibility = "hidden";
+              }
+            }
+            function myFunction() {
+                var element = document.body;
+                element.classList.toggle("dark-mode");
+            }
+            </script>  
+    </head>
+    <body>
+        <div id="header">
+        <nav>
+            <div class="logo">ANIKET BAIDYA</div>
+        </nav>  
+        </div>
+        <nav>
+            <ul class="menu">
+                <a href="port.html"><li><span style="color: gold;">Home</span></li></a>
+                <a href="about.html"><li>About</li></a>
+                <a href="work.html"><li>Work</li></a>
+            </ul>
+            <ul class="contact">
+                <a href="contact.html"><li>Contact</li></a>
+            </ul>
+            <button onclick="myFunction()" id="dark">
+                <input type="checkbox">
+            </button>
+        </nav>
+        <br>
+    <div class="first">
+        <h1>Hi, I'm <span style="color: gold;">Aniket.</span></h1><br>
+        <h1><span style="color:white;">Software Engineer,Coder and Web Developer.</span></h1><br>
+
+        <h2>Multidisciplinary Developer who hacks at, makes and occasionally breaks things.</h2><br><br>
+        <h2>Currently Self-Employed.</h2><br><br>
+        <h2>Less moody in real life.✌️</h2><br><br>
+        <a href="about.html"><span style="color: gold;">Learn more>  </span></a><br>
+    </div>
+    </body>
+</html>
