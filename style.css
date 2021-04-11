@@ -158,8 +158,19 @@ input[type=text] {
     border: 2px solid #ccc;
     color: white;
   }
+input[type=email] {
+    transition: width 3s ease-in;
+    background-color: rgba(0, 0, 0, 0.63);
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 2px solid #ccc;
+    color: white;
+  }
   
   input[type=text]:focus {
+    width: 60%;
+  }
+input[type=email]:focus {
     width: 60%;
   }
   textarea {
