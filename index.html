@@ -34,12 +34,15 @@
             transition: background-color var(--transition-speed), color var(--transition-speed);
         }
 
-        /* --- Dark Mode Styles --- */
+        /* --- Dark Mode Styles (FIXED FOR LEGIBILITY) --- */
         body.dark-mode {
             background-color: var(--background-dark);
             color: var(--text-color-dark);
         }
+        
+        /* 1. Ensure all standard dark, secondary, and general text elements are light */
         body.dark-mode .text-dark,
+        body.dark-mode .text-secondary, /* ADDED: Ensures secondary text is legible */
         body.dark-mode .navbar-brand,
         body.dark-mode .nav-link,
         body.dark-mode h2,
@@ -47,6 +50,8 @@
         body.dark-mode p {
             color: var(--text-color-dark) !important;
         }
+        
+        /* 2. Overriding hardcoded/specific styles for dark backgrounds */
         body.dark-mode .bg-light,
         body.dark-mode .bg-white {
             background-color: #1e1e1e !important;
@@ -61,13 +66,21 @@
         body.dark-mode .timeline::before {
             background-color: var(--timeline-line-dark);
         }
+        
+        /* 3. Specific fix for Muted text (like dates in timeline) */
         body.dark-mode .text-muted {
             color: #b0b0b0 !important;
         }
+
+        /* 4. Specific fix for Stat Box label text color (which was hardcoded dark grey) */
+        body.dark-mode .stat-box p {
+            color: #b0b0b0 !important; 
+        }
+
         /* Ensure specific badges look right in dark mode containers */
         body.dark-mode .skill-badge.bg-info { 
-            background-color: #4a4a4a !important; /* Darker grey background for contrast */
-            color: var(--text-color-dark) !important; /* Light text */
+            background-color: #4a4a4a !important; 
+            color: var(--text-color-dark) !important; 
         }
         body.dark-mode .skill-badge.bg-secondary {
             background-color: #4a4a4a !important;
@@ -93,6 +106,12 @@
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: var(--background-light); }
         .hero h1 { font-size: 3.5rem; letter-spacing: -1px; }
         #typing-text { min-height: 2rem; color: var(--primary-color); } /* Ensure space for text */
+        
+        /* Override Hero background color specifically in dark mode */
+        body.dark-mode .hero {
+             background-color: var(--background-dark);
+        }
+
 
         /* --- Buttons (3D Hover Effect) --- */
         .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); transition: transform 0.2s, box-shadow 0.2s; }
@@ -103,6 +122,16 @@
         }
         .btn-outline-dark { transition: transform 0.2s; }
         .btn-outline-dark:hover { transform: translateY(-3px); }
+        
+        /* Dark Mode Button text fix */
+        body.dark-mode .btn-outline-dark {
+            color: var(--text-color-dark);
+            border-color: var(--text-color-dark);
+        }
+        body.dark-mode .btn-outline-dark:hover {
+            color: var(--background-dark);
+            background-color: var(--text-color-dark);
+        }
 
         /* --- Skills Badges (Used for Skills and Coursework) --- */
         .skill-badge {
@@ -246,8 +275,8 @@
     <input type="checkbox" id="darkModeToggle" class="d-none">
     <label for="darkModeToggle" id="darkModeButton" class="btn btn-dark fixed-bottom-right shadow-lg rounded-circle" aria-label="Toggle Dark Mode">
         <svg id="toggleIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
-            <!-- Initial path is the Moon icon -->
-            <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.299 7.3 7.299 1.099 0 2.12-.231 3.03-.667.14-.076.316-.036.44.1l.66.713a.75.75 0 0 1-.073 1.084A8.01 8.01 0 0 1 7.23 16C3.223 16 0 12.44 0 8a7.995 7.995 0 0 1 6-7.722z"/>
+            <!-- Initial path is the Moon icon (FIXED: Using a path that avoids clipping) -->
+            <path d="M6.671 0a8 8 0 0 1-6.495 8C-.376 12.985 3.321 16 8 16a8 8 0 0 1 1-15.999V.001A7.973 7.973 0 0 1 6.671 0z"/>
         </svg>
     </label>
 
@@ -533,15 +562,15 @@
             </p>
             <p class="mb-2">
                 <!-- Changed <strong> to <span class="fw-bold"> -->
-                <span class="text-primary fw-bold"><i class="fab fa-linkedin me-2"></i>LinkedIn:</span> linkedin.com/in/aniketbaidya03
+                <span class="text-primary fw-bold"><i class="fab fa-linkedin me-2"></i>LinkedIn:</span> <a href="https://linkedin.com/in/aniketbaidya03" target="_blank" class="text-reset">linkedin.com/in/aniketbaidya03</a>
             </p>
             <p class="mb-4">
                 <!-- Changed <strong> to <span class="fw-bold"> -->
-                <span class="text-primary fw-bold"><i class="fab fa-github me-2"></i>GitHub:</span> github.com/DEV-AB-03
+                <span class="text-primary fw-bold"><i class="fab fa-github me-2"></i>GitHub:</span> <a href="https://github.com/DEV-AB-03" target="_blank" class="text-reset">github.com/DEV-AB-03</a>
             </p>
             <p class="mb-4">
                 <!-- Changed <strong> to <span class="fw-bold"> -->
-                <span class="text-primary fw-bold"><i class="fas fa-laptop-code me-2"></i>LeetCode:</span> leetcode.com/DEV-AB-03 
+                <span class="text-primary fw-bold"><i class="fas fa-laptop-code me-2"></i>LeetCode:</span> <a href="https://leetcode.com/DEV-AB-03" target="_blank" class="text-reset">leetcode.com/DEV-AB-03</a>
             </p>
             <a href="mailto:aniketbaidya03@gmail.com" class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg mx-2 mb-2">Email Me</a>
             <a href="https://linkedin.com/in/aniketbaidya03" target="_blank" class="btn btn-outline-dark btn-lg rounded-pill px-5 mx-2 mb-2">Connect on LinkedIn</a>
@@ -593,8 +622,8 @@
         
         // SVG paths for switching the icon (Sun and Moon)
         const sunPath = "M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z";
-        // Moon Path: Crescent
-        const moonPath = "M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.299 7.3 7.299 1.099 0 2.12-.231 3.03-.667.14-.076.316-.036.44.1l.66.713a.75.75 0 0 1-.073 1.084A8.01 8.01 0 0 1 7.23 16C3.223 16 0 12.44 0 8a7.995 7.995 0 0 1 6-7.722z";
+        // Moon Path (FIXED: Uses a path that is fully contained and prevents clipping)
+        const moonPath = "M6.671 0a8 8 0 0 1-6.495 8C-.376 12.985 3.321 16 8 16a8 8 0 0 1 1-15.999V.001A7.973 7.973 0 0 1 6.671 0z";
 
         function applyTheme() {
             // Because we listen to the button click, the checkbox state (toggle.checked) is already updated.
@@ -630,7 +659,12 @@
 
         // FIX: Attach the listener to the visible label (button) instead of the hidden checkbox.
         if (toggleButton) {
-             toggleButton.addEventListener('click', applyTheme);
+             toggleButton.addEventListener('click', () => {
+                // Manually toggle the checkbox state when the button is clicked, 
+                // as the <label> click behavior is inconsistent across browsers/environments
+                toggle.checked = !toggle.checked;
+                applyTheme();
+             });
         }
 
         
@@ -734,3 +768,4 @@
     </script>
 </body>
 </html>
+
