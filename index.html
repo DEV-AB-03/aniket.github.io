@@ -627,7 +627,7 @@
         const moonPath = "M6.671 0a8 8 0 0 1-6.495 8C-.376 12.985 3.321 16 8 16a8 8 0 0 1 1-15.999V.001A7.973 7.973 0 0 1 6.671 0z";
 
         function applyTheme() {
-            // Because we listen to the button click, the checkbox state (toggle.checked) is already updated.
+            // Read the current (correctly toggled) state of the hidden checkbox
             const isDark = toggle.checked;
             const pathElement = toggleIcon.querySelector('path');
 
@@ -658,12 +658,10 @@
             }
         }
 
-        // FIX: Attach the listener to the visible label (button) instead of the hidden checkbox.
         if (toggleButton) {
              toggleButton.addEventListener('click', () => {
-                // Manually toggle the checkbox state when the button is clicked, 
-                // as the <label> click behavior is inconsistent across browsers/environments
-                toggle.checked = !toggle.checked;
+                // BUG FIX: Removed the manual toggle `toggle.checked = !toggle.checked;`
+                // Relying on the native <label> behavior to update `toggle.checked` before this function runs.
                 applyTheme();
              });
         }
