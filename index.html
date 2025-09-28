@@ -1,55 +1,719 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>HOME</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="stylesheet" href="style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap" rel="stylesheet">
-        <script>
-            window.onscroll = function() {scrollFunction()};
-            
-            function scrollFunction() {
-              if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-                document.getElementById("header").style.visibility = "visible";
-              } 
-              else {
-                document.getElementById("header").style.visibility = "hidden";
-              }
-            }
-            function myFunction() {
-                var element = document.body;
-                element.classList.toggle("dark-mode");
-            }
-            </script>  
-    </head>
-    <body>
-        <div id="header">
-        <nav>
-            <div class="logo">ANIKET BAIDYA</div>
-        </nav>  
-        </div>
-        <nav>
-            <ul class="menu">
-                <a href="port.html"><li><span style="color: gold;">Home</span></li></a>
-                <a href="about.html"><li>About</li></a>
-                <a href="work.html"><li>Work</li></a>
-            </ul>
-            <ul class="contact">
-                <a href="contact.html"><li>Contact</li></a>
-            </ul>
-            <button onclick="myFunction()" id="dark">
-                <input type="checkbox">
-            </button>
-        </nav>
-        <br>
-    <div class="first">
-        <h1>Hi, I'm <span style="color: gold;">Aniket.</span></h1><br>
-        <h1><span style="color:white;">Software Engineer,Coder and Web Developer.</span></h1><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniket Baidya | Senior Software Engineer</title>
+    <!-- Dependencies: Inter Font, Bootstrap, AOS, Font Awesome (for minimal icons) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Theming Variables & Base Styles (Modernized) --- */
+        :root {
+            scroll-behavior: smooth;
+            --primary-color: #1a73e8; /* Professional Blue */
+            --secondary-color: #00c853; /* Impact Green */
+            --background-light: #f5f7fa; /* Soft Light Background */
+            --background-dark: #121212; /* Deep Dark Darkground (OLED friendly) */
+            --card-background-light: #ffffff;
+            --card-background-dark: #1e1e1e;
+            --text-color-light: #212529;
+            --text-color-dark: #f0f0f0;
+            --timeline-line-light: #c2c9d1;
+            --timeline-line-dark: #3a3a3a;
+            --transition-speed: 0.4s;
+            font-family: 'Inter', sans-serif;
+        }
 
-        <h2>Multidisciplinary Developer who hacks at, makes and occasionally breaks things.</h2><br><br>
-        <h2>Currently Self-Employed.</h2><br><br>
-        <h2>Less moody in real life.✌️</h2><br><br>
-        <a href="about.html"><span style="color: gold;">Learn more>  </span></a><br>
-    </div>
-    </body>
+        body {
+            background-color: var(--background-light);
+            color: var(--text-color-light);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-color-dark);
+        }
+        body.dark-mode .text-dark,
+        body.dark-mode .navbar-brand,
+        body.dark-mode .nav-link,
+        body.dark-mode h2,
+        body.dark-mode h4,
+        body.dark-mode p {
+            color: var(--text-color-dark) !important;
+        }
+        body.dark-mode .bg-light,
+        body.dark-mode .bg-white {
+            background-color: #1e1e1e !important;
+        }
+        body.dark-mode .card,
+        body.dark-mode .timeline-item-content,
+        body.dark-mode .stat-box {
+            background-color: var(--card-background-dark) !important;
+            border-color: #333 !important;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+        }
+        body.dark-mode .timeline::before {
+            background-color: var(--timeline-line-dark);
+        }
+        body.dark-mode .text-muted {
+            color: #b0b0b0 !important;
+        }
+        /* Ensure specific badges look right in dark mode containers */
+        body.dark-mode .skill-badge.bg-info { 
+            background-color: #4a4a4a !important; /* Darker grey background for contrast */
+            color: var(--text-color-dark) !important; /* Light text */
+        }
+        body.dark-mode .skill-badge.bg-secondary {
+            background-color: #4a4a4a !important;
+        }
+        
+        /* FIX: Define the custom background color for the Frameworks/Messaging badges */
+        .bg-success-impact { 
+            background-color: var(--secondary-color) !important; 
+        }
+
+        /* --- General Utilities --- */
+        .section-padding { padding: 6rem 0; }
+        .text-primary { color: var(--primary-color) !important; }
+        .text-success-impact { color: var(--secondary-color) !important; }
+        
+        /* --- Scroll Progress Bar --- */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; height: 4px; width: 0%; z-index: 2000;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+        }
+
+        /* --- Hero Section & Typing Effect --- */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: var(--background-light); }
+        .hero h1 { font-size: 3.5rem; letter-spacing: -1px; }
+        #typing-text { min-height: 2rem; color: var(--primary-color); } /* Ensure space for text */
+
+        /* --- Buttons (3D Hover Effect) --- */
+        .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-primary:hover { 
+            background-color: var(--primary-color); border-color: var(--primary-color); 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 15px rgba(26, 115, 232, 0.3); /* Shadow based on primary color */
+        }
+        .btn-outline-dark { transition: transform 0.2s; }
+        .btn-outline-dark:hover { transform: translateY(-3px); }
+
+        /* --- Skills Badges (Used for Skills and Coursework) --- */
+        .skill-badge {
+            margin: 0.4rem 0.3rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 9999px; 
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.9rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .skill-group-title {
+            position: relative;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            color: var(--primary-color);
+        }
+
+        /* --- Count-Up Stats --- */
+        .stat-box {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            background-color: var(--card-background-light);
+            border: 1px solid #e9ecef;
+        }
+        .stat-box h3 {
+             font-size: 3rem;
+             color: var(--primary-color);
+             font-weight: 800;
+             letter-spacing: -0.5px;
+        }
+        .stat-box p {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6c757d;
+        }
+
+        /* --- Timeline (Enhanced Design) --- */
+        .timeline { position: relative; padding: 0; list-style: none; }
+        .timeline::before {
+            content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 3px;
+            background-color: var(--timeline-line-light); margin-left: -1.5px; z-index: 0;
+            transition: background-color 0.5s;
+        }
+        .timeline-item { position: relative; margin-bottom: 2rem; }
+        .timeline-marker {
+            position: absolute; top: 1.25rem; left: 50%; width: 15px; height: 15px;
+            background-color: var(--primary-color); border-radius: 50%; margin-left: -7.5px;
+            z-index: 2; border: 3px solid var(--background-light);
+            transition: background-color 0.5s, border-color 0.5s;
+        }
+        body.dark-mode .timeline-marker { border-color: var(--background-dark); }
+
+        .timeline-item-content {
+            padding: 1.5rem; border-radius: 0.75rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05); border: 1px solid #e9ecef; z-index: 1;
+            transition: background-color 0.5s, border-color 0.5s, transform 0.2s, box-shadow 0.2s;
+        }
+        .timeline-item-content:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Timeline Responsiveness --- */
+        @media (max-width: 768px) {
+            .timeline::before { left: 10px; }
+            .timeline-marker { left: 10px; margin-left: -7.5px; }
+            .timeline-item .col-md-6 { width: 100%; }
+            .timeline-item .text-md-end { text-align: left !important; }
+            .timeline-item .col-md-6:nth-child(2) { padding-left: 2.5rem; } /* Pushes content right of the line */
+            .timeline-item .col-md-6:nth-child(1) { padding-left: 2.5rem; }
+        }
+
+        /* --- Dark Mode Toggle (Enhanced Styling & Interaction) --- */
+        .fixed-bottom-right {
+            position: fixed; right: 20px; bottom: 20px; width: 50px; height: 50px; z-index: 1050; 
+            cursor: pointer; 
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+        /* Interactive States for smoothness */
+        .fixed-bottom-right:hover {
+            transform: scale(1.1); /* Subtle lift on hover */
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.8); /* Glow in light mode */
+        }
+        .fixed-bottom-right:active {
+            transform: scale(0.9); /* Press effect on click */
+        }
+
+        /* Icon Colors */
+        #toggleIcon { transition: fill 0.4s; }
+        body:not(.dark-mode) #toggleIcon { fill: #ffc107; } /* Sun/light mode: Yellow icon */
+        body.dark-mode #toggleIcon { fill: #f0f0f0; } /* Moon/dark mode: Light icon */
+        
+        /* Button Background Color Change based on Mode */
+        .fixed-bottom-right.btn-dark {
+            background-color: #343a40 !important; /* Default button dark grey background */
+            border-color: #343a40 !important;
+        }
+        body.dark-mode .fixed-bottom-right.btn-dark {
+            background-color: var(--primary-color) !important; /* Switches to blue in dark mode */
+            border-color: var(--primary-color) !important;
+        }
+        body.dark-mode .fixed-bottom-right.btn-dark:hover {
+            box-shadow: 0 0 15px rgba(26, 115, 232, 0.8); /* Glow in dark mode */
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="56">
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white" href="#hero">ANIKET BAIDYA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#personal-summary">Summary</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#awards">Awards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#coursework">Coursework</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- DARK MODE TOGGLE BUTTON (Highly Interactive) -->
+    <input type="checkbox" id="darkModeToggle" class="d-none">
+    <!-- ADDED ID 'darkModeButton' HERE TO ATTACH THE CLICK LISTENER -->
+    <label for="darkModeToggle" id="darkModeButton" class="btn btn-dark fixed-bottom-right shadow-lg rounded-circle" aria-label="Toggle Dark Mode">
+        <svg id="toggleIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
+            <!-- Initial path is the Moon icon -->
+            <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.299 7.3 7.299 1.099 0 2.12-.231 3.03-.667.14-.076.316-.036.44.1l.66.713a.75.75 0 0 1-.073 1.084A8.01 8.01 0 0 1 7.23 16C3.223 16 0 12.44 0 8a7.995 7.995 0 0 1 6-7.722z"/>
+        </svg>
+    </label>
+
+
+    <!-- 1. HERO SECTION (With Typing Animation) -->
+    <header class="hero text-center" id="hero">
+        <div class="container" data-aos="fade-up" data-aos-duration="1200">
+            <h1 class="display-1 fw-bolder text-dark mb-3">ANIKET BAIDYA</h1>
+            <p class="lead text-secondary mb-4">Senior Software Engineer | Backend Architect | Microservices Expert</p>
+            <p class="h3 mb-5 fw-light" id="typing-text"></p>
+            <div class="mt-4">
+                <a href="#experience" class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg mx-2 mb-2">View Experience</a>
+                <a href="mailto:aniketbaidya03@gmail.com" class="btn btn-outline-dark btn-lg rounded-pill px-5 mx-2 mb-2">Email Me</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1.5. PERSONAL SUMMARY SECTION -->
+    <section class="section-padding bg-light" id="personal-summary">
+        <div class="container" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="text-center mb-4 fw-bold text-primary">High-Impact Backend Architect</h2>
+            <p class="lead text-center mx-auto" style="max-width: 800px;">
+                I am a highly driven **Senior Software Engineer** specializing in distributed systems and high-throughput FinTech applications. With a focus on **Java/Spring Boot Microservices**, I have engineered solutions that resulted in a **40% cut in latency** and a **5% increase in repeat transactions**. Currently pursuing a Master's in Computer Science at **University College Dublin**, I combine robust academic knowledge with practical experience in scaling systems on **AWS/Kubernetes**.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. ABOUT ME SECTION (with Count Up Animation) - Content Adjusted -->
+    <section class="section-padding bg-white" id="about">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Academic and Professional Foundation</h2>
+            <div class="row align-items-center">
+                
+                <div class="col-lg-10 mx-auto">
+                    <!-- Adjusted content, since the main summary moved to #personal-summary -->
+                    <p class="lead text-center mb-5" data-aos="fade-up" data-aos-delay="100">
+                        My foundation is built on strong academic achievements, including a Master's in Computer Science from **University College Dublin** focusing on distributed systems, and a B.Tech degree from **Vellore Institute of Technology** (3.9/4.2 GPA). My professional journey is characterized by scaling core FinTech platforms and optimizing backend performance.
+                    </p>
+                    
+                    <div class="row text-center" id="stats-container">
+                        <!-- Stat 1: B.Tech GPA -->
+                        <div class="col-md-4 mb-4" data-aos="fade-right">
+                            <div class="stat-box">
+                                <h3 id="stat-gpa" data-target="3.9" data-speed="2000">0</h3>
+                                <p class="text-secondary">B.TECH GPA (OUT OF 4.2)</p>
+                            </div>
+                        </div>
+                        <!-- Stat 2: Latency Reduction (40%) -->
+                         <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="150">
+                            <div class="stat-box">
+                                <h3 id="stat-latency" data-target="40" data-speed="1500">0%</h3>
+                                <p class="text-secondary">MAX LATENCY REDUCTION ACHIEVED</p>
+                            </div>
+                        </div>
+                        <!-- Stat 3: Deployment Acceleration (25%) -->
+                        <div class="col-md-4 mb-4" data-aos="fade-left" data-aos-delay="300">
+                            <div class="stat-box">
+                                <h3 id="stat-deployment" data-target="25" data-speed="1500">0%</h3>
+                                <p class="text-secondary">VULNERABILITY/REDUNDANCY REDUCTION</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. EXPERIENCE SECTION (Hyper-Polished Timeline) -->
+    <section class="section-padding" id="experience">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Professional Journey</h2>
+            <div class="timeline">
+                
+                <!-- Role 1: Senior Software Engineer -->
+                <div class="row timeline-item" data-aos="fade-right">
+                    <div class="timeline-marker"></div>
+                    <div class="col-md-6 text-md-end mb-4">
+                        <div class="timeline-item-content">
+                            <h4 class="fw-bold text-primary">Senior Software Engineer</h4>
+                            <p class="text-muted mb-2">Bajaj Finserv Limited, India | Jan 2025 - Aug 2025</p>
+                            <ul class="list-unstyled">
+                                <li>• **Led a team of 4 engineers** to design and implement the backend architecture of the **IRCTC Rail Ticket Booking** feature on the Bajaj app.</li>
+                                <li>• Optimized backend workflows and API performance, cutting latency by **40%**, which drove a **35% rise in adoption**, **5% more repeat transactions**, and **20% fewer support queries**.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+
+                <!-- Role 2: Software Engineer -->
+                <div class="row timeline-item" data-aos="fade-left">
+                    <div class="timeline-marker" style="background-color: var(--secondary-color);"></div>
+                    <div class="col-md-6 d-none d-md-block"></div>
+                    <div class="col-md-6 text-md-start mb-4">
+                        <div class="timeline-item-content">
+                            <h4 class="fw-bold text-primary">Software Engineer</h4>
+                            <p class="text-muted mb-2">Bajaj Finserv Limited, India | Jul 2023 - Dec 2024</p>
+                            <ul class="list-unstyled">
+                                <li>• Enhanced codebase scalability and security by adding security checks and removing redundant code, reducing **vulnerabilities by 30%** and improving deployment speed by **25%** using CI/CD.</li>
+                                <li>• Developed a high-performance REST API for the **Payments Team** to calculate convenience fees on the checkout page, achieving an average latency of **5ms** even during peak traffic exceeding **100 TPS**.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 3: Software Engineering Intern -->
+                <div class="row timeline-item" data-aos="fade-right">
+                    <div class="timeline-marker"></div>
+                    <div class="col-md-6 text-md-end mb-4">
+                        <div class="timeline-item-content">
+                            <h4 class="fw-bold text-primary">Software Engineering Intern</h4>
+                            <p class="text-muted mb-2">Bajaj Finserv Limited, India | Jan 2023 - Jun 2023</p>
+                            <ul class="list-unstyled">
+                                <li>• Optimized existing APIs for **tracking customer journeys** across various Bajaj Finserv products. Reduced latency to under 100ms, improved performance by **45%**, and cut the codebase by over **50%**.</li>
+                                <li>• Enhanced the Tracker Feature API by optimizing code, implementing caching, and reducing latency from 1s to an average of **98ms**.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.5. AWARDS SECTION -->
+    <section class="section-padding bg-light" id="awards">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Awards & Recognition</h2>
+            <div class="row g-4 justify-content-center">
+                
+                <!-- Award 1: BFL Certified Prodigy -->
+                <div class="col-md-6 col-lg-5" data-aos="flip-up">
+                    <div class="card h-100 shadow border-2 border-primary">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary fw-bold">BFL Certified Prodigy</h4>
+                            <p class="card-subtitle mb-2 text-muted">Bajaj Finserv Limited, India | July 2025</p>
+                            <p class="card-text">Awarded for **outstanding contributions** to the **IRCTC Rail Ticket Booking project**, becoming the **youngest team member** to achieve this recognition.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Award 2: BFL Problem Solver -->
+                <div class="col-md-6 col-lg-5" data-aos="flip-up" data-aos-delay="200">
+                    <div class="card h-100 shadow border-2 border-secondary">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary fw-bold">BFL Problem Solver</h4>
+                            <p class="card-subtitle mb-2 text-muted">Bajaj Finserv Limited, India | January 2025</p>
+                            <p class="card-text">Recognized for **significant contributions** to Payment Services and horizontal middle-layer services, highlighting technical excellence and impact on core backend systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. UCD RELEVANT COURSEWORK SECTION -->
+    <section class="section-padding" id="coursework">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">UCD Relevant Coursework</h2>
+            <p class="lead text-center mx-auto mb-5 text-muted" style="max-width: 800px;" data-aos="fade-up" data-aos-delay="100">
+                Focus areas from my Master's in Computer Science at University College Dublin, emphasizing high-level system architecture and performance optimization.
+            </p>
+            <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+                <!-- Using Primary color for the badges to highlight academic focus -->
+                <span class="skill-badge bg-primary text-white">Cloud Computing</span>
+                <span class="skill-badge bg-primary text-white">Distributed Systems</span>
+                <span class="skill-badge bg-primary text-white">Performance of Computer Systems</span>
+                <span class="skill-badge bg-primary text-white">Advanced Data Structures and Algorithms</span>
+                <span class="skill-badge bg-primary text-white">Software Engineering</span>
+                <span class="skill-badge bg-primary text-white">Information Security</span>
+                <span class="skill-badge bg-primary text-white">Generative AI</span>
+                <span class="skill-badge bg-primary text-white">Agent Oriented Software</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 5. TECHNICAL PROFILE SECTION -->
+    <section class="section-padding bg-light" id="skills">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Core Expertise</h2>
+            
+            <div class="row text-center g-4">
+                <!-- Group 1: Languages & Data -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-right">
+                    <h5 class="skill-group-title">Languages & Data</h5>
+                    <span class="skill-badge bg-primary text-white">Java</span>
+                    <span class="skill-badge bg-primary text-white">C++</span>
+                    <span class="skill-badge bg-primary text-white">Python</span>
+                    <span class="skill-badge bg-primary text-white">MySQL</span>
+                </div>
+                
+                <!-- Group 2: Frameworks & Messaging (NOW FIXED) -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                    <h5 class="skill-group-title">Frameworks & Messaging</h5>
+                    <span class="skill-badge bg-success-impact text-white">Spring Boot</span>
+                    <span class="skill-badge bg-success-impact text-white">Microservices</span>
+                    <span class="skill-badge bg-success-impact text-white">Apache Kafka</span>
+                    <span class="skill-badge bg-success-impact text-white">REST APIs</span>
+                    <span class="skill-badge bg-success-impact text-white">gRPC</span>
+                </div>
+                
+                <!-- Group 3: Cloud, Infra & Certs -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <h5 class="skill-group-title">Cloud, Infra & Certs</h5>
+                    <span class="skill-badge bg-info text-dark">AWS Cloud Practitioner</span>
+                    <span class="skill-badge bg-info text-dark">AWS</span>
+                    <span class="skill-badge bg-info text-dark">Azure</span>
+                    <span class="skill-badge bg-info text-dark">Kubernetes</span>
+                    <span class="skill-badge bg-info text-dark">Docker</span>
+                </div>
+                
+                <!-- Group 4: Concepts & Tools -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-left">
+                    <h5 class="skill-group-title">Concepts & Tools</h5>
+                    <span class="skill-badge bg-secondary text-white">DSA</span>
+                    <span class="skill-badge bg-secondary text-white">OOPS/SDLC</span>
+                    <span class="skill-badge bg-secondary text-white">IntelliJ</span>
+                    <span class="skill-badge bg-secondary text-white">VS Code</span>
+                    <span class="skill-badge bg-secondary text-white">Git / Jira</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PROJECTS SECTION -->
+    <section class="section-padding bg-white" id="projects">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Portfolio Showcase</h2>
+            <div class="row g-4">
+                
+                <!-- Project 1: Stay Safe -->
+                <div class="col-lg-6">
+                    <div class="card h-100 shadow-lg border-0" data-aos="zoom-in">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">Stay Safe (Ongoing)</h4>
+                            <p class="card-text">Developed a **Spring Boot** web app with Google Maps integration for crowdsourced, real-time safety mapping for international students.</p>
+                            <p class="card-text small text-muted">
+                                **Key Features:** Used scalable **REST APIs** with a **NOSQL** database. Implemented user authentication via **Google OAuth 2.0** and applied best practices like **Lombok** and **Google Java Format (Spotless Apply)** for clean code. Designed the backend for future live updates.
+                            </p>
+                            <a href="https://github.com/DEV-AB-03/Stay-Safe" class="btn btn-outline-dark mt-3 rounded-pill" target="_blank">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Web Application in AWS EKS -->
+                <div class="col-lg-6">
+                    <div class="card h-100 shadow-lg border-0" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">Web Application in AWS Elastic Kubernetes Service</h4>
+                            <p class="card-text">Containerized and deployed a web application on **AWS EKS**, scaling the cluster to improve reliability by **30%** and accelerate CI/CD deployment times by **40%**.</p>
+                            <p class="card-text small text-muted">
+                                **Tech Stack:** **AWS**, **Docker**, **Kubernetes**, HTML5, JS, CSS. This project focused on CI/CD pipeline streamlining and cloud infrastructure management for stability and speed.
+                            </p>
+                            <a href="https://github.com/DEV-AB-03/AWS-EKS-Project" class="btn btn-outline-dark mt-3 rounded-pill" target="_blank">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CONTACT SECTION -->
+    <section class="section-padding text-center" id="contact">
+        <div class="container" data-aos="fade-up">
+            <h2 class="mb-4 fw-bold">Let's Connect</h2>
+            <p class="lead mb-4">
+                Currently based in **Dublin, Ireland** while pursuing my Master's at UCD. Find me on the platforms below or reach out for high-impact roles.
+            </p>
+            <p class="mb-2">
+                <strong class="text-primary">Email:</strong> aniketbaidya03@gmail.com
+            </p>
+            <p class="mb-2">
+                <strong class="text-primary">LinkedIn:</strong> linkedin.com/in/aniketbaidya03
+            </p>
+            <p class="mb-4">
+                <strong class="text-primary">GitHub:</strong> github.com/DEV-AB-03
+            </p>
+            <p class="mb-4">
+                <strong class="text-primary">LeetCode:</strong> leetcode.com/DEV-AB-03 
+            </p>
+            <a href="mailto:aniketbaidya03@gmail.com" class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg mx-2 mb-2">Email Me</a>
+            <a href="https://linkedin.com/in/aniketbaidya03" target="_blank" class="btn btn-outline-dark btn-lg rounded-pill px-5 mx-2 mb-2">Connect on LinkedIn</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-0 small">&copy; 2025 Aniket Baidya. Fully responsive, themed, and dynamically polished portfolio.</p>
+        </div>
+    </footer>
+
+    <!-- JS dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // --- 1. Global Initialization and Scroll Progress ---
+        document.addEventListener('DOMContentLoaded', () => {
+            startTypingLoop();
+            window.addEventListener('scroll', updateScrollProgress);
+            updateScrollProgress(); // Initial call
+        });
+
+        window.onload = function() {
+            AOS.init({
+                duration: 1000, 
+                once: true,
+                mirror: false
+            });
+            setupCountUpObserver();
+            // Ensure dark mode is correctly set up on load
+            initializeTheme(); 
+        };
+
+        function updateScrollProgress() {
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPosition = window.scrollY;
+            const progress = (scrollPosition / totalHeight) * 100;
+            document.getElementById('scroll-progress').style.width = progress + '%';
+        }
+
+
+        // --- 2. Dark Mode Toggle Logic (FIXED) ---
+        const toggle = document.getElementById('darkModeToggle'); // Hidden Input
+        const toggleButton = document.getElementById('darkModeButton'); // Visible Label (FIXED: Added ID in HTML)
+        const body = document.body;
+        const toggleIcon = document.getElementById('toggleIcon');
+        
+        // SVG paths for switching the icon (Sun and Moon)
+        const sunPath = "M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z";
+        // Moon Path: Crescent
+        const moonPath = "M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.299 7.3 7.299 1.099 0 2.12-.231 3.03-.667.14-.076.316-.036.44.1l.66.713a.75.75 0 0 1-.073 1.084A8.01 8.01 0 0 1 7.23 16C3.223 16 0 12.44 0 8a7.995 7.995 0 0 1 6-7.722z";
+
+        function applyTheme() {
+            // Because we listen to the button click, the checkbox state (toggle.checked) is already updated.
+            const isDark = toggle.checked;
+            const pathElement = toggleIcon.querySelector('path');
+
+            // Apply body class for visual theme change
+            if (isDark) {
+                body.classList.add('dark-mode');
+                pathElement.setAttribute('d', sunPath); // Show Sun when in Dark Mode
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                pathElement.setAttribute('d', moonPath); // Show Moon when in Light Mode
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                toggle.checked = true;
+                // Set the icon to Sun initially if dark mode is preferred
+                toggleIcon.querySelector('path').setAttribute('d', sunPath);
+                applyTheme(); // Apply the theme immediately
+            } else {
+                // Default to light mode
+                toggle.checked = false;
+                toggleIcon.querySelector('path').setAttribute('d', moonPath);
+                body.classList.remove('dark-mode');
+            }
+        }
+
+        // FIX: Attach the listener to the visible label (button) instead of the hidden checkbox.
+        if (toggleButton) {
+             toggleButton.addEventListener('click', applyTheme);
+        }
+
+        
+        // --- 3. Advanced Typing Animation ---
+        const typingTextElement = document.getElementById('typing-text');
+        const phrases = ["Designing Scalable Backends", "Microservices Expert", "AWS Certified", "Java/Spring Boot Specialist"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function startTypingLoop() {
+            const currentPhrase = phrases[phraseIndex];
+
+            if (!isDeleting) {
+                // Typing
+                typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === currentPhrase.length) {
+                    isDeleting = true;
+                    setTimeout(startTypingLoop, 1500); // Wait at end
+                } else {
+                    setTimeout(startTypingLoop, 100);
+                }
+            } else {
+                // Deleting
+                typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(startTypingLoop, 500); // Wait before new phrase
+                } else {
+                    setTimeout(startTypingLoop, 50);
+                }
+            }
+        }
+        
+        // --- 4. Count Up Animation Function ---
+        function startCountUp(element, finalValue, duration, suffix = '') {
+            const startValue = 0;
+            const startTime = performance.now();
+            const isFloat = (finalValue.toString().includes('.') || finalValue % 1 !== 0);
+
+            function updateCounter(timestamp) {
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                let currentValue = progress * finalValue;
+
+                element.textContent = currentValue.toFixed(isFloat ? 1 : 0) + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = finalValue.toFixed(isFloat ? 1 : 0) + suffix;
+                }
+            }
+            requestAnimationFrame(updateCounter);
+        }
+
+        // --- 5. Intersection Observer for Count Up ---
+        function setupCountUpObserver() {
+            const statsContainer = document.getElementById('stats-container');
+            const options = {
+                root: null, 
+                rootMargin: '0px',
+                threshold: 0.5 
+            };
+            
+            let hasAnimated = false;
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        const elements = entry.target.querySelectorAll('[data-target]');
+                        elements.forEach(el => {
+                            const target = parseFloat(el.getAttribute('data-target'));
+                            const speed = parseInt(el.getAttribute('data-speed'), 10);
+                            const id = el.id;
+                            let suffix = '';
+
+                            if (id === 'stat-latency' || id === 'stat-deployment') {
+                                suffix = '%';
+                            } else if (id === 'stat-gpa') {
+                                suffix = '/4.2';
+                            }
+                            
+                            startCountUp(el, target, speed, suffix);
+                        });
+                        hasAnimated = true; // Mark as done
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            if (statsContainer) {
+                observer.observe(statsContainer);
+            }
+        }
+    </script>
+</body>
 </html>
