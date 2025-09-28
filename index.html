@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome 6 for Icons (NEW) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ8gB+zF9t6T4bS0KxJb8sU5u/f7vGjR3t6GqI5fT7f7Z8eK+gL5u/dI+gGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* --- Theming Variables & Base Styles (Modernized) --- */
         :root {
@@ -148,6 +150,8 @@
             background-color: var(--timeline-line-light); margin-left: -1.5px; z-index: 0;
             transition: background-color 0.5s;
         }
+        body.dark-mode .timeline-marker { border-color: var(--background-dark); }
+
         .timeline-item { position: relative; margin-bottom: 2rem; }
         .timeline-marker {
             position: absolute; top: 1.25rem; left: 50%; width: 15px; height: 15px;
@@ -238,9 +242,8 @@
         </div>
     </nav>
     
-    <!-- DARK MODE TOGGLE BUTTON (Highly Interactive) -->
+    <!-- DARK MODE TOGGLE BUTTON -->
     <input type="checkbox" id="darkModeToggle" class="d-none">
-    <!-- ADDED ID 'darkModeButton' HERE TO ATTACH THE CLICK LISTENER -->
     <label for="darkModeToggle" id="darkModeButton" class="btn btn-dark fixed-bottom-right shadow-lg rounded-circle" aria-label="Toggle Dark Mode">
         <svg id="toggleIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
             <!-- Initial path is the Moon icon -->
@@ -262,26 +265,26 @@
         </div>
     </header>
 
-    <!-- 1.5. PERSONAL SUMMARY SECTION -->
+    <!-- 1.5. PERSONAL SUMMARY SECTION (TEXT MODIFIED) -->
     <section class="section-padding bg-light" id="personal-summary">
         <div class="container" data-aos="fade-up" data-aos-duration="1000">
             <h2 class="text-center mb-4 fw-bold text-primary">High-Impact Backend Architect</h2>
             <p class="lead text-center mx-auto" style="max-width: 800px;">
-                I am a highly driven **Senior Software Engineer** specializing in distributed systems and high-throughput FinTech applications. With a focus on **Java/Spring Boot Microservices**, I have engineered solutions that resulted in a **40% cut in latency** and a **5% increase in repeat transactions**. Currently pursuing a Master's in Computer Science at **University College Dublin**, I combine robust academic knowledge with practical experience in scaling systems on **AWS/Kubernetes**.
+                I am a highly driven Senior Software Engineer specializing in distributed systems and high-throughput FinTech applications. With a focus on Java/Spring Boot Microservices, I have engineered solutions that resulted in a 40% cut in latency and a 5% increase in repeat transactions. Currently pursuing a Master's in Computer Science at University College Dublin, I combine robust academic knowledge with practical experience in scaling systems on AWS/Kubernetes.
             </p>
         </div>
     </section>
 
-    <!-- 2. ABOUT ME SECTION (with Count Up Animation) - Content Adjusted -->
+    <!-- 2. ABOUT ME SECTION (with Count Up Animation) - TEXT MODIFIED -->
     <section class="section-padding bg-white" id="about">
         <div class="container">
             <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Academic and Professional Foundation</h2>
             <div class="row align-items-center">
                 
                 <div class="col-lg-10 mx-auto">
-                    <!-- Adjusted content, since the main summary moved to #personal-summary -->
-                    <p class="lead text-center mb-5" data-aos="fade-up" data-aos-delay="100">
-                        My foundation is built on strong academic achievements, including a Master's in Computer Science from **University College Dublin** focusing on distributed systems, and a B.Tech degree from **Vellore Institute of Technology** (3.9/4.2 GPA). My professional journey is characterized by scaling core FinTech platforms and optimizing backend performance.
+                    <!-- Text stripped of ** -->
+                    <p class="lead text-center mb-5" style="max-width: 800px;" data-aos="fade-up" data-aos-delay="100">
+                        My foundation is built on strong academic achievements, including a Master's in Computer Science from University College Dublin focusing on distributed systems, and a B.Tech degree from Vellore Institute of Technology (3.9/4.2 GPA). My professional journey is characterized by scaling core FinTech platforms and optimizing backend performance.
                     </p>
                     
                     <div class="row text-center" id="stats-container">
@@ -312,7 +315,7 @@
         </div>
     </section>
 
-    <!-- 3. EXPERIENCE SECTION (Hyper-Polished Timeline) -->
+    <!-- 3. EXPERIENCE SECTION (Hyper-Polished Timeline) - TEXT MODIFIED -->
     <section class="section-padding" id="experience">
         <div class="container">
             <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Professional Journey</h2>
@@ -326,8 +329,9 @@
                             <h4 class="fw-bold text-primary">Senior Software Engineer</h4>
                             <p class="text-muted mb-2">Bajaj Finserv Limited, India | Jan 2025 - Aug 2025</p>
                             <ul class="list-unstyled">
-                                <li>• **Led a team of 4 engineers** to design and implement the backend architecture of the **IRCTC Rail Ticket Booking** feature on the Bajaj app.</li>
-                                <li>• Optimized backend workflows and API performance, cutting latency by **40%**, which drove a **35% rise in adoption**, **5% more repeat transactions**, and **20% fewer support queries**.</li>
+                                <!-- Text stripped of ** -->
+                                <li>• Led a team of 4 engineers to design and implement the backend architecture of the IRCTC Rail Ticket Booking feature on the Bajaj app.</li>
+                                <li>• Optimized backend workflows and API performance, cutting latency by 40%, which drove a 35% rise in adoption, 5% more repeat transactions, and 20% fewer support queries.</li>
                             </ul>
                         </div>
                     </div>
@@ -343,8 +347,9 @@
                             <h4 class="fw-bold text-primary">Software Engineer</h4>
                             <p class="text-muted mb-2">Bajaj Finserv Limited, India | Jul 2023 - Dec 2024</p>
                             <ul class="list-unstyled">
-                                <li>• Enhanced codebase scalability and security by adding security checks and removing redundant code, reducing **vulnerabilities by 30%** and improving deployment speed by **25%** using CI/CD.</li>
-                                <li>• Developed a high-performance REST API for the **Payments Team** to calculate convenience fees on the checkout page, achieving an average latency of **5ms** even during peak traffic exceeding **100 TPS**.</li>
+                                <!-- Text stripped of ** -->
+                                <li>• Enhanced codebase scalability and security by adding security checks and removing redundant code, reducing vulnerabilities by 30% and improving deployment speed by 25% using CI/CD.</li>
+                                <li>• Developed a high-performance REST API for the Payments Team to calculate convenience fees on the checkout page, achieving an average latency of 5ms even during peak traffic exceeding 100 TPS.</li>
                             </ul>
                         </div>
                     </div>
@@ -358,8 +363,9 @@
                             <h4 class="fw-bold text-primary">Software Engineering Intern</h4>
                             <p class="text-muted mb-2">Bajaj Finserv Limited, India | Jan 2023 - Jun 2023</p>
                             <ul class="list-unstyled">
-                                <li>• Optimized existing APIs for **tracking customer journeys** across various Bajaj Finserv products. Reduced latency to under 100ms, improved performance by **45%**, and cut the codebase by over **50%**.</li>
-                                <li>• Enhanced the Tracker Feature API by optimizing code, implementing caching, and reducing latency from 1s to an average of **98ms**.</li>
+                                <!-- Text stripped of ** -->
+                                <li>• Optimized existing APIs for tracking customer journeys across various Bajaj Finserv products. Reduced latency to under 100ms, improved performance by 45%, and cut the codebase by over 50%.</li>
+                                <li>• Enhanced the Tracker Feature API by optimizing code, implementing caching, and reducing latency from 1s to an average of 98ms.</li>
                             </ul>
                         </div>
                     </div>
@@ -369,7 +375,7 @@
         </div>
     </section>
 
-    <!-- 3.5. AWARDS SECTION -->
+    <!-- 3.5. AWARDS SECTION - TEXT MODIFIED -->
     <section class="section-padding bg-light" id="awards">
         <div class="container">
             <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Awards & Recognition</h2>
@@ -379,9 +385,10 @@
                 <div class="col-md-6 col-lg-5" data-aos="flip-up">
                     <div class="card h-100 shadow border-2 border-primary">
                         <div class="card-body">
-                            <h4 class="card-title text-primary fw-bold">BFL Certified Prodigy</h4>
+                            <h4 class="card-title text-primary fw-bold"><i class="fas fa-medal me-2"></i>BFL Certified Prodigy</h4>
                             <p class="card-subtitle mb-2 text-muted">Bajaj Finserv Limited, India | July 2025</p>
-                            <p class="card-text">Awarded for **outstanding contributions** to the **IRCTC Rail Ticket Booking project**, becoming the **youngest team member** to achieve this recognition.</p>
+                            <!-- Text stripped of ** -->
+                            <p class="card-text">Awarded for outstanding contributions to the IRCTC Rail Ticket Booking project, becoming the youngest team member to achieve this recognition.</p>
                         </div>
                     </div>
                 </div>
@@ -390,9 +397,10 @@
                 <div class="col-md-6 col-lg-5" data-aos="flip-up" data-aos-delay="200">
                     <div class="card h-100 shadow border-2 border-secondary">
                         <div class="card-body">
-                            <h4 class="card-title text-primary fw-bold">BFL Problem Solver</h4>
+                            <h4 class="card-title text-primary fw-bold"><i class="fas fa-lightbulb me-2"></i>BFL Problem Solver</h4>
                             <p class="card-subtitle mb-2 text-muted">Bajaj Finserv Limited, India | January 2025</p>
-                            <p class="card-text">Recognized for **significant contributions** to Payment Services and horizontal middle-layer services, highlighting technical excellence and impact on core backend systems.</p>
+                            <!-- Text stripped of ** -->
+                            <p class="card-text">Recognized for significant contributions to Payment Services and horizontal middle-layer services, highlighting technical excellence and impact on core backend systems.</p>
                         </div>
                     </div>
                 </div>
@@ -408,15 +416,15 @@
                 Focus areas from my Master's in Computer Science at University College Dublin, emphasizing high-level system architecture and performance optimization.
             </p>
             <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
-                <!-- Using Primary color for the badges to highlight academic focus -->
-                <span class="skill-badge bg-primary text-white">Cloud Computing</span>
-                <span class="skill-badge bg-primary text-white">Distributed Systems</span>
-                <span class="skill-badge bg-primary text-white">Performance of Computer Systems</span>
-                <span class="skill-badge bg-primary text-white">Advanced Data Structures and Algorithms</span>
-                <span class="skill-badge bg-primary text-white">Software Engineering</span>
-                <span class="skill-badge bg-primary text-white">Information Security</span>
-                <span class="skill-badge bg-primary text-white">Generative AI</span>
-                <span class="skill-badge bg-primary text-white">Agent Oriented Software</span>
+                <!-- Coursework Icons -->
+                <span class="skill-badge bg-primary text-white"><i class="fas fa-cloud me-2"></i>Cloud Computing</span>
+                <span class="skill-badge bg-primary text-white"><i class="fas fa-laptop-code me-2"></i>Distributed Systems</span>
+                <span class="skill-badge bg-primary text-white"><i class="fas fa-tachometer-alt me-2"></i>Performance of Computer Systems</span>
+                <span class="skill-badge bg-primary text-white"><i class="fas fa-sort-numeric-up me-2"></i>Advanced Data Structures and Algorithms</span>
+                <span class="skill-badge bg-primary text-white"><i class="fas fa-project-diagram me-2"></i>Software Engineering</span>
+                <span class="skill-badge bg-primary text-white"><i class="fas fa-shield-alt me-2"></i>Information Security</span>
+                <span class="skill-badge bg-primary text-white"><i class="fas fa-robot me-2"></i>Generative AI</span>
+                <span class="skill-badge bg-primary text-white"><i class="fas fa-user-tie me-2"></i>Agent Oriented Software</span>
             </div>
         </div>
     </section>
@@ -431,46 +439,46 @@
                 <!-- Group 1: Languages & Data -->
                 <div class="col-md-6 col-lg-3" data-aos="fade-right">
                     <h5 class="skill-group-title">Languages & Data</h5>
-                    <span class="skill-badge bg-primary text-white">Java</span>
-                    <span class="skill-badge bg-primary text-white">C++</span>
-                    <span class="skill-badge bg-primary text-white">Python</span>
-                    <span class="skill-badge bg-primary text-white">MySQL</span>
+                    <span class="skill-badge bg-primary text-white"><i class="fab fa-java me-2"></i>Java</span>
+                    <span class="skill-badge bg-primary text-white"><i class="fab fa-cuttlefish me-2"></i>C++</span>
+                    <span class="skill-badge bg-primary text-white"><i class="fab fa-python me-2"></i>Python</span>
+                    <span class="skill-badge bg-primary text-white"><i class="fas fa-database me-2"></i>MySQL</span>
                 </div>
                 
-                <!-- Group 2: Frameworks & Messaging (NOW FIXED) -->
+                <!-- Group 2: Frameworks & Messaging -->
                 <div class="col-md-6 col-lg-3" data-aos="fade-up">
                     <h5 class="skill-group-title">Frameworks & Messaging</h5>
-                    <span class="skill-badge bg-success-impact text-white">Spring Boot</span>
-                    <span class="skill-badge bg-success-impact text-white">Microservices</span>
-                    <span class="skill-badge bg-success-impact text-white">Apache Kafka</span>
-                    <span class="skill-badge bg-success-impact text-white">REST APIs</span>
-                    <span class="skill-badge bg-success-impact text-white">gRPC</span>
+                    <span class="skill-badge bg-success-impact text-white"><i class="fas fa-leaf me-2"></i>Spring Boot</span>
+                    <span class="skill-badge bg-success-impact text-white"><i class="fas fa-network-wired me-2"></i>Microservices</span>
+                    <span class="skill-badge bg-success-impact text-white"><i class="fas fa-message me-2"></i>Apache Kafka</span>
+                    <span class="skill-badge bg-success-impact text-white"><i class="fas fa-server me-2"></i>REST APIs</span>
+                    <span class="skill-badge bg-success-impact text-white"><i class="fas fa-project-diagram me-2"></i>gRPC</span>
                 </div>
                 
                 <!-- Group 3: Cloud, Infra & Certs -->
                 <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
                     <h5 class="skill-group-title">Cloud, Infra & Certs</h5>
-                    <span class="skill-badge bg-info text-dark">AWS Cloud Practitioner</span>
-                    <span class="skill-badge bg-info text-dark">AWS</span>
-                    <span class="skill-badge bg-info text-dark">Azure</span>
-                    <span class="skill-badge bg-info text-dark">Kubernetes</span>
-                    <span class="skill-badge bg-info text-dark">Docker</span>
+                    <span class="skill-badge bg-info text-dark"><i class="fas fa-award me-2"></i>AWS Cloud Practitioner</span>
+                    <span class="skill-badge bg-info text-dark"><i class="fab fa-aws me-2"></i>AWS</span>
+                    <span class="skill-badge bg-info text-dark"><i class="fab fa-microsoft me-2"></i>Azure</span>
+                    <span class="skill-badge bg-info text-dark"><i class="fas fa-cubes me-2"></i>Kubernetes</span>
+                    <span class="skill-badge bg-info text-dark"><i class="fab fa-docker me-2"></i>Docker</span>
                 </div>
                 
                 <!-- Group 4: Concepts & Tools -->
                 <div class="col-md-6 col-lg-3" data-aos="fade-left">
                     <h5 class="skill-group-title">Concepts & Tools</h5>
-                    <span class="skill-badge bg-secondary text-white">DSA</span>
-                    <span class="skill-badge bg-secondary text-white">OOPS/SDLC</span>
-                    <span class="skill-badge bg-secondary text-white">IntelliJ</span>
-                    <span class="skill-badge bg-secondary text-white">VS Code</span>
-                    <span class="skill-badge bg-secondary text-white">Git / Jira</span>
+                    <span class="skill-badge bg-secondary text-white"><i class="fas fa-brain me-2"></i>DSA</span>
+                    <span class="skill-badge bg-secondary text-white"><i class="fas fa-object-group me-2"></i>OOPS/SDLC</span>
+                    <span class="skill-badge bg-secondary text-white"><i class="fas fa-wrench me-2"></i>IntelliJ</span>
+                    <span class="skill-badge bg-secondary text-white"><i class="fas fa-code me-2"></i>VS Code</span>
+                    <span class="skill-badge bg-secondary text-white"><i class="fab fa-git-alt me-2"></i>Git / Jira</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. PROJECTS SECTION -->
+    <!-- 6. PROJECTS SECTION - TEXT MODIFIED -->
     <section class="section-padding bg-white" id="projects">
         <div class="container">
             <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Portfolio Showcase</h2>
@@ -480,12 +488,14 @@
                 <div class="col-lg-6">
                     <div class="card h-100 shadow-lg border-0" data-aos="zoom-in">
                         <div class="card-body">
-                            <h4 class="card-title text-primary">Stay Safe (Ongoing)</h4>
-                            <p class="card-text">Developed a **Spring Boot** web app with Google Maps integration for crowdsourced, real-time safety mapping for international students.</p>
+                            <h4 class="card-title text-primary"><i class="fas fa-map-marked-alt me-2"></i>Stay Safe (Ongoing)</h4>
+                            <!-- Text stripped of ** -->
+                            <p class="card-text">Developed a Spring Boot web app with Google Maps integration for crowdsourced, real-time safety mapping for international students.</p>
                             <p class="card-text small text-muted">
-                                **Key Features:** Used scalable **REST APIs** with a **NOSQL** database. Implemented user authentication via **Google OAuth 2.0** and applied best practices like **Lombok** and **Google Java Format (Spotless Apply)** for clean code. Designed the backend for future live updates.
+                                <!-- Text stripped of ** -->
+                                Key Features: Used scalable REST APIs with a NOSQL database. Implemented user authentication via Google OAuth 2.0 and applied best practices like Lombok and Google Java Format (Spotless Apply) for clean code. Designed the backend for future live updates.
                             </p>
-                            <a href="https://github.com/DEV-AB-03/Stay-Safe" class="btn btn-outline-dark mt-3 rounded-pill" target="_blank">View on GitHub</a>
+                            <a href="https://github.com/DEV-AB-03/Stay-Safe" class="btn btn-outline-dark mt-3 rounded-pill" target="_blank"><i class="fab fa-github me-2"></i>View on GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -494,12 +504,14 @@
                 <div class="col-lg-6">
                     <div class="card h-100 shadow-lg border-0" data-aos="zoom-in" data-aos-delay="200">
                         <div class="card-body">
-                            <h4 class="card-title text-primary">Web Application in AWS Elastic Kubernetes Service</h4>
-                            <p class="card-text">Containerized and deployed a web application on **AWS EKS**, scaling the cluster to improve reliability by **30%** and accelerate CI/CD deployment times by **40%**.</p>
+                            <h4 class="card-title text-primary"><i class="fas fa-box-open me-2"></i>Web Application in AWS Elastic Kubernetes Service</h4>
+                            <!-- Text stripped of ** -->
+                            <p class="card-text">Containerized and deployed a web application on AWS EKS, scaling the cluster to improve reliability by 30% and accelerate CI/CD deployment times by 40%.</p>
                             <p class="card-text small text-muted">
-                                **Tech Stack:** **AWS**, **Docker**, **Kubernetes**, HTML5, JS, CSS. This project focused on CI/CD pipeline streamlining and cloud infrastructure management for stability and speed.
+                                <!-- Text stripped of ** -->
+                                Tech Stack: AWS, Docker, Kubernetes, HTML5, JS, CSS. This project focused on CI/CD pipeline streamlining and cloud infrastructure management for stability and speed.
                             </p>
-                            <a href="https://github.com/DEV-AB-03/AWS-EKS-Project" class="btn btn-outline-dark mt-3 rounded-pill" target="_blank">View on GitHub</a>
+                            <a href="https://github.com/DEV-AB-03/AWS-EKS-Project" class="btn btn-outline-dark mt-3 rounded-pill" target="_blank"><i class="fab fa-github me-2"></i>View on GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -507,24 +519,29 @@
         </div>
     </section>
 
-    <!-- 7. CONTACT SECTION -->
+    <!-- 7. CONTACT SECTION - TEXT MODIFIED (Removed ** and changed <strong> to <span> for labels) -->
     <section class="section-padding text-center" id="contact">
         <div class="container" data-aos="fade-up">
             <h2 class="mb-4 fw-bold">Let's Connect</h2>
+            <!-- Text stripped of ** -->
             <p class="lead mb-4">
-                Currently based in **Dublin, Ireland** while pursuing my Master's at UCD. Find me on the platforms below or reach out for high-impact roles.
+                Currently based in Dublin, Ireland while pursuing my Master's at UCD. Find me on the platforms below or reach out for high-impact roles.
             </p>
             <p class="mb-2">
-                <strong class="text-primary">Email:</strong> aniketbaidya03@gmail.com
+                <!-- Changed <strong> to <span class="fw-bold"> -->
+                <span class="text-primary fw-bold"><i class="fas fa-envelope me-2"></i>Email:</span> aniketbaidya03@gmail.com
             </p>
             <p class="mb-2">
-                <strong class="text-primary">LinkedIn:</strong> linkedin.com/in/aniketbaidya03
+                <!-- Changed <strong> to <span class="fw-bold"> -->
+                <span class="text-primary fw-bold"><i class="fab fa-linkedin me-2"></i>LinkedIn:</span> linkedin.com/in/aniketbaidya03
             </p>
             <p class="mb-4">
-                <strong class="text-primary">GitHub:</strong> github.com/DEV-AB-03
+                <!-- Changed <strong> to <span class="fw-bold"> -->
+                <span class="text-primary fw-bold"><i class="fab fa-github me-2"></i>GitHub:</span> github.com/DEV-AB-03
             </p>
             <p class="mb-4">
-                <strong class="text-primary">LeetCode:</strong> leetcode.com/DEV-AB-03 
+                <!-- Changed <strong> to <span class="fw-bold"> -->
+                <span class="text-primary fw-bold"><i class="fas fa-laptop-code me-2"></i>LeetCode:</span> leetcode.com/DEV-AB-03 
             </p>
             <a href="mailto:aniketbaidya03@gmail.com" class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg mx-2 mb-2">Email Me</a>
             <a href="https://linkedin.com/in/aniketbaidya03" target="_blank" class="btn btn-outline-dark btn-lg rounded-pill px-5 mx-2 mb-2">Connect on LinkedIn</a>
@@ -570,7 +587,7 @@
 
         // --- 2. Dark Mode Toggle Logic (FIXED) ---
         const toggle = document.getElementById('darkModeToggle'); // Hidden Input
-        const toggleButton = document.getElementById('darkModeButton'); // Visible Label (FIXED: Added ID in HTML)
+        const toggleButton = document.getElementById('darkModeButton'); // Visible Label
         const body = document.body;
         const toggleIcon = document.getElementById('toggleIcon');
         
