@@ -41,8 +41,9 @@
         }
         
         /* 1. Ensure all standard dark, secondary, and general text elements are light */
+        body.dark-mode h1, /* FIX: Ensure hero H1 becomes light in dark mode */
         body.dark-mode .text-dark,
-        body.dark-mode .text-secondary, /* ADDED: Ensures secondary text is legible */
+        body.dark-mode .text-secondary, 
         body.dark-mode .navbar-brand,
         body.dark-mode .nav-link,
         body.dark-mode h2,
@@ -768,4 +769,3 @@
     </script>
 </body>
 </html>
-
