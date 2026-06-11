@@ -15,6 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectAnimations();
     initConnectAnimations();
     initMagneticButtons();
+
+    // Safety net: after 2.5s, force-show any element that GSAP left invisible
+    // (fires if a ScrollTrigger never triggered due to viewport/timing issues)
+    setTimeout(() => {
+        document.querySelectorAll('.glass, [id$="-title"]').forEach(el => {
+            if (parseFloat(getComputedStyle(el).opacity) < 0.1) {
+                gsap.set(el, { opacity: 1, y: 0, x: 0, scale: 1, skewY: 0 });
+            }
+        });
+        ScrollTrigger.refresh();
+    }, 2500);
 });
 
 function initHeroAnimations() {
@@ -27,19 +38,19 @@ function initHeroAnimations() {
         ease: 'power4.out',
         skewY: 7,
     })
-    .from('#hero-title', {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-    }, "-=0.5")
-    .from('.magnetic-btn', {
-        scale: 0,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 0.5,
-        ease: 'back.out(1.7)',
-    }, "-=0.3");
+        .from('#hero-title', {
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+        }, "-=0.5")
+        .from('.magnetic-btn', {
+            scale: 0,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.5,
+            ease: 'back.out(1.7)',
+        }, "-=0.3");
 }
 
 function initBentoAnimations() {
@@ -47,7 +58,7 @@ function initBentoAnimations() {
     gsap.from(cards, {
         scrollTrigger: {
             trigger: '#about',
-            start: 'top 90%',
+            start: 'top 95%',
             toggleActions: 'play none none none',
         },
         y: 50,
@@ -68,7 +79,7 @@ function initBentoAnimations() {
             duration: 2,
             scrollTrigger: {
                 trigger: stat,
-                start: 'top 90%',
+                start: 'top 95%',
             },
             onUpdate: () => {
                 const formatted = target % 1 === 0 ? Math.floor(obj.val) : obj.val.toFixed(1);
@@ -79,31 +90,37 @@ function initBentoAnimations() {
 }
 
 function initAwardsAnimations() {
-    gsap.from('#awards-title', {
-        scrollTrigger: {
-            trigger: '#awards',
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-    });
+    gsap.fromTo('#awards-title',
+        { y: 30, opacity: 0 },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '#awards',
+                start: 'top 95%',
+                toggleActions: 'play none none none',
+            },
+        }
+    );
 
     const awards = document.querySelectorAll('#awards .glass');
-    gsap.from(awards, {
-        scrollTrigger: {
-            trigger: '#awards',
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-        },
-        scale: 0.8,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: 'back.out(1.7)',
-    });
+    gsap.fromTo(awards,
+        { scale: 0.8, opacity: 0 },
+        {
+            scale: 1,
+            opacity: 1,
+            stagger: 0.15,
+            duration: 0.8,
+            ease: 'back.out(1.7)',
+            scrollTrigger: {
+                trigger: '#awards',
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+            },
+        }
+    );
 }
 
 function initTimelineAnimations() {
@@ -121,86 +138,104 @@ function initTimelineAnimations() {
     const expCards = document.querySelectorAll('#experience .glass');
     expCards.forEach((card, i) => {
         const isRight = i % 2 === 0;
-        gsap.from(card, {
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 90%',
-                toggleActions: 'play none none none',
-            },
-            x: isRight ? -50 : 50,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out',
-        });
+        gsap.fromTo(card,
+            { x: isRight ? -50 : 50, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 95%',
+                    toggleActions: 'play none none none',
+                },
+            }
+        );
     });
 }
 
 function initSkillsAnimations() {
-    gsap.from('#skills-title', {
-        scrollTrigger: {
-            trigger: '#skills',
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-    });
+    gsap.fromTo('#skills-title',
+        { y: 30, opacity: 0 },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '#skills',
+                start: 'top 95%',
+                toggleActions: 'play none none none',
+            },
+        }
+    );
 
     const skillGroups = document.querySelectorAll('#skills .glass');
-    gsap.from(skillGroups, {
-        scrollTrigger: {
-            trigger: '#skills',
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-        },
-        y: 50,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: 'power3.out',
-    });
+    gsap.fromTo(skillGroups,
+        { y: 50, opacity: 0 },
+        {
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '#skills',
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+            },
+        }
+    );
 }
 
 function initCertsAnimations() {
-    gsap.from('#certs-title', {
-        scrollTrigger: {
-            trigger: '#certs',
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-    });
+    gsap.fromTo('#certs-title',
+        { y: 30, opacity: 0 },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '#certs',
+                start: 'top 95%',
+                toggleActions: 'play none none none',
+            },
+        }
+    );
 
-    gsap.from('#certs .glass', {
-        scrollTrigger: {
-            trigger: '#certs',
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-        },
-        scale: 0.9,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'back.out(1.7)',
-    });
+    gsap.fromTo('#certs .glass',
+        { scale: 0.9, opacity: 0 },
+        {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'back.out(1.7)',
+            scrollTrigger: {
+                trigger: '#certs',
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+            },
+        }
+    );
 }
 
 function initProjectAnimations() {
-    gsap.from('#projects-title', {
-        scrollTrigger: {
-            trigger: '#projects',
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-    });
+    gsap.fromTo('#projects-title',
+        { y: 30, opacity: 0 },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '#projects',
+                start: 'top 95%',
+                toggleActions: 'play none none none',
+            },
+        }
+    );
 
     const projects = document.querySelectorAll('[data-project]');
     projects.forEach(proj => {
@@ -230,17 +265,20 @@ function initProjectAnimations() {
 }
 
 function initConnectAnimations() {
-    gsap.from('#contact-title', {
-        scrollTrigger: {
-            trigger: '#contact',
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-        },
-        scale: 0.8,
-        opacity: 0,
-        duration: 1,
-        ease: 'back.out(1.7)',
-    });
+    gsap.fromTo('#contact-title',
+        { scale: 0.8, opacity: 0 },
+        {
+            scale: 1,
+            opacity: 1,
+            duration: 1,
+            ease: 'back.out(1.7)',
+            scrollTrigger: {
+                trigger: '#contact',
+                start: 'top 95%',
+                toggleActions: 'play none none none',
+            },
+        }
+    );
 }
 
 function initMagneticButtons() {
@@ -266,4 +304,4 @@ function initMagneticButtons() {
             });
         });
     });
-}
+}c

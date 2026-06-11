@@ -22,12 +22,12 @@ function initLenis() {
         infinite: false,
     });
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
+    // Wire Lenis into GSAP's ticker so ScrollTrigger and smooth scroll stay in sync
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000); // GSAP time is in seconds, Lenis expects milliseconds
+    });
 
-    requestAnimationFrame(raf);
+    gsap.ticker.lagSmoothing(0); // Prevent GSAP from catching up after tab switch/blur
 }
 
 function initCustomCursor() {
