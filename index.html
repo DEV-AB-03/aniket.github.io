@@ -1,796 +1,512 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aniket Baidya | Software Engineer</title>
-    <!-- Dependencies: Inter Font, Bootstrap, AOS, Font Awesome (for minimal icons) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Font Awesome 6 for Icons (NEW) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ8gB+zF9t6T4bS0KxJb8sU5u/f7vGjR3t6GqI5fT7f7Z8eK+gL5u/dI+gGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        /* --- Theming Variables & Base Styles (Modernized) --- */
-        :root {
-            scroll-behavior: smooth;
-            --primary-color: #1a73e8; /* Professional Blue */
-            --secondary-color: #00c853; /* Impact Green */
-            --background-light: #f5f7fa; /* Soft Light Background */
-            --background-dark: #121212; /* Deep Dark Darkground (OLED friendly) */
-            --card-background-light: #ffffff;
-            --card-background-dark: #1e1e1e;
-            --text-color-light: #212529;
-            --text-color-dark: #f0f0f0;
-            --timeline-line-light: #c2c9d1;
-            --timeline-line-dark: #3a3a3a;
-            --transition-speed: 0.4s;
-            font-family: 'Inter', sans-serif;
-        }
+    <title>Aniket Baidya | Backend Architect</title>
 
-        body {
-            background-color: var(--background-light);
-            color: var(--text-color-light);
-            transition: background-color var(--transition-speed), color var(--transition-speed);
-        }
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
 
-        /* --- Dark Mode Styles (FIXED FOR LEGIBILITY) --- */
-        body.dark-mode {
-            background-color: var(--background-dark);
-            color: var(--text-color-dark);
-        }
-        
-        /* 1. Ensure all standard dark, secondary, and general text elements are light */
-        body.dark-mode h1, /* FIX: Ensure hero H1 becomes light in dark mode */
-        body.dark-mode .text-dark,
-        body.dark-mode .text-secondary, 
-        body.dark-mode .navbar-brand,
-        body.dark-mode .nav-link,
-        body.dark-mode h2,
-        body.dark-mode h4,
-        body.dark-mode p {
-            color: var(--text-color-dark) !important;
-        }
-        
-        /* 2. Overriding hardcoded/specific styles for dark backgrounds */
-        body.dark-mode .bg-light,
-        body.dark-mode .bg-white {
-            background-color: #1e1e1e !important;
-        }
-        body.dark-mode .card,
-        body.dark-mode .timeline-item-content,
-        body.dark-mode .stat-box {
-            background-color: var(--card-background-dark) !important;
-            border-color: #333 !important;
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
-        }
-        body.dark-mode .timeline::before {
-            background-color: var(--timeline-line-dark);
-        }
-        
-        /* 3. Specific fix for Muted text (like dates in timeline) */
-        body.dark-mode .text-muted {
-            color: #b0b0b0 !important;
-        }
-
-        /* 4. Specific fix for Stat Box label text color (which was hardcoded dark grey) */
-        body.dark-mode .stat-box p {
-            color: #b0b0b0 !important; 
-        }
-
-        /* Ensure specific badges look right in dark mode containers */
-        body.dark-mode .skill-badge.bg-info { 
-            background-color: #4a4a4a !important; 
-            color: var(--text-color-dark) !important; 
-        }
-        body.dark-mode .skill-badge.bg-secondary {
-            background-color: #4a4a4a !important;
-        }
-        
-        /* FIX: Define the custom background color for the Frameworks/Messaging badges */
-        .bg-success-impact { 
-            background-color: var(--secondary-color) !important; 
-        }
-
-        /* --- General Utilities --- */
-        .section-padding { padding: 6rem 0; }
-        .text-primary { color: var(--primary-color) !important; }
-        .text-success-impact { color: var(--secondary-color) !important; }
-        
-        /* --- Scroll Progress Bar --- */
-        #scroll-progress {
-            position: fixed; top: 0; left: 0; height: 4px; width: 0%; z-index: 2000;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
-        }
-
-        /* --- Hero Section & Typing Effect --- */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: var(--background-light); }
-        .hero h1 { font-size: 3.5rem; letter-spacing: -1px; }
-        #typing-text { min-height: 2rem; color: var(--primary-color); } /* Ensure space for text */
-        
-        /* Override Hero background color specifically in dark mode */
-        body.dark-mode .hero {
-             background-color: var(--background-dark);
-        }
-
-
-        /* --- Buttons (3D Hover Effect) --- */
-        .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); transition: transform 0.2s, box-shadow 0.2s; }
-        .btn-primary:hover { 
-            background-color: var(--primary-color); border-color: var(--primary-color); 
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 15px rgba(26, 115, 232, 0.3); /* Shadow based on primary color */
-        }
-        .btn-outline-dark { transition: transform 0.2s; }
-        .btn-outline-dark:hover { transform: translateY(-3px); }
-        
-        /* Dark Mode Button text fix */
-        body.dark-mode .btn-outline-dark {
-            color: var(--text-color-dark);
-            border-color: var(--text-color-dark);
-        }
-        body.dark-mode .btn-outline-dark:hover {
-            color: var(--background-dark);
-            background-color: var(--text-color-dark);
-        }
-
-        /* --- Skills Badges (Used for Skills and Coursework) --- */
-        .skill-badge {
-            margin: 0.4rem 0.3rem;
-            padding: 0.6rem 1.2rem;
-            border-radius: 9999px; 
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            font-size: 0.9rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        .skill-group-title {
-            position: relative;
-            margin-bottom: 1.5rem;
-            font-size: 1.25rem;
-            color: var(--primary-color);
-        }
-
-        /* --- Count-Up Stats --- */
-        .stat-box {
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            background-color: var(--card-background-light);
-            border: 1px solid #e9ecef;
-        }
-        .stat-box h3 {
-             font-size: 3rem;
-             color: var(--primary-color);
-             font-weight: 800;
-             letter-spacing: -0.5px;
-        }
-        .stat-box p {
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #6c757d;
-        }
-
-        /* --- Timeline (Enhanced Design) --- */
-        .timeline { position: relative; padding: 0; list-style: none; }
-        .timeline::before {
-            content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 3px;
-            background-color: var(--timeline-line-light); margin-left: -1.5px; z-index: 0;
-            transition: background-color 0.5s;
-        }
-        body.dark-mode .timeline-marker { border-color: var(--background-dark); }
-
-        .timeline-item { position: relative; margin-bottom: 2rem; }
-        .timeline-marker {
-            position: absolute; top: 1.25rem; left: 50%; width: 15px; height: 15px;
-            background-color: var(--primary-color); border-radius: 50%; margin-left: -7.5px;
-            z-index: 2; border: 3px solid var(--background-light);
-            transition: background-color 0.5s, border-color 0.5s;
-        }
-        body.dark-mode .timeline-marker { border-color: var(--background-dark); }
-
-        .timeline-item-content {
-            padding: 1.5rem; border-radius: 0.75rem;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05); border: 1px solid #e9ecef; z-index: 1;
-            transition: background-color 0.5s, border-color 0.5s, transform 0.2s, box-shadow 0.2s;
-        }
-        .timeline-item-content:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* --- Timeline Responsiveness --- */
-        @media (max-width: 768px) {
-            .timeline::before { left: 10px; }
-            .timeline-marker { left: 10px; margin-left: -7.5px; }
-            .timeline-item .col-md-6 { width: 100%; }
-            .timeline-item .text-md-end { text-align: left !important; }
-            .timeline-item .col-md-6:nth-child(2) { padding-left: 2.5rem; } /* Pushes content right of the line */
-            .timeline-item .col-md-6:nth-child(1) { padding-left: 2.5rem; }
-        }
-
-        /* --- Dark Mode Toggle (Enhanced Styling & Interaction) --- */
-        .fixed-bottom-right {
-            position: fixed; right: 20px; bottom: 20px; width: 50px; height: 50px; z-index: 1050; 
-            cursor: pointer; 
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-        }
-        /* Interactive States for smoothness */
-        .fixed-bottom-right:hover {
-            transform: scale(1.1); /* Subtle lift on hover */
-            box-shadow: 0 0 15px rgba(255, 193, 7, 0.8); /* Glow in light mode */
-        }
-        .fixed-bottom-right:active {
-            transform: scale(0.9); /* Press effect on click */
-        }
-
-        /* Icon Colors */
-        #toggleIcon { transition: fill 0.4s; }
-        body:not(.dark-mode) #toggleIcon { fill: #ffc107; } /* Sun/light mode: Yellow icon */
-        body.dark-mode #toggleIcon { fill: #f0f0f0; } /* Moon/dark mode: Light icon */
-        
-        /* Button Background Color Change based on Mode */
-        .fixed-bottom-right.btn-dark {
-            background-color: #343a40 !important; /* Default button dark grey background */
-            border-color: #343a40 !important;
-        }
-        body.dark-mode .fixed-bottom-right.btn-dark {
-            background-color: var(--primary-color) !important; /* Switches to blue in dark mode */
-            border-color: var(--primary-color) !important;
-        }
-        body.dark-mode .fixed-bottom-right.btn-dark:hover {
-            box-shadow: 0 0 15px rgba(26, 115, 232, 0.8); /* Glow in dark mode */
-        }
-    </style>
-</head>
-<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="56">
-
-    <!-- Scroll Progress Indicator -->
-    <div id="scroll-progress"></div>
-
-    <!-- NAVIGATION BAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-white" href="#hero">Aniket Baidya</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#personal-summary">Summary</a></li> 
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#awards">Awards</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#coursework">Coursework</a></li> 
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- DARK MODE TOGGLE BUTTON -->
-    <input type="checkbox" id="darkModeToggle" class="d-none">
-    <label for="darkModeToggle" id="darkModeButton" class="btn btn-dark fixed-bottom-right shadow-lg rounded-circle" aria-label="Toggle Dark Mode">
-        <svg id="toggleIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
-            <!-- Initial path is the Moon icon (FIXED: Using a path that avoids clipping) -->
-            <path d="M6.671 0a8 8 0 0 1-6.495 8C-.376 12.985 3.321 16 8 16a8 8 0 0 1 1-15.999V.001A7.973 7.973 0 0 1 6.671 0z"/>
-        </svg>
-    </label>
-
-
-    <!-- 1. HERO SECTION (With Typing Animation) -->
-    <header class="hero text-center" id="hero">
-        <div class="container" data-aos="fade-up" data-aos-duration="1200">
-            <h1 class="display-1 fw-bolder text-dark mb-3">Aniket Badya</h1>
-            <p class="lead text-secondary mb-4">Software Engineer | Backend Architect | Microservices Expert</p>
-            <p class="h3 mb-5 fw-light" id="typing-text"></p>
-            <div class="mt-4">
-                <a href="#experience" class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg mx-2 mb-2">View Experience</a>
-                <a href="mailto:aniketbaidya03@gmail.com" class="btn btn-outline-dark btn-lg rounded-pill px-5 mx-2 mb-2">Email Me</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- 1.5. PERSONAL SUMMARY SECTION (TEXT MODIFIED) -->
-    <section class="section-padding bg-light" id="personal-summary">
-        <div class="container" data-aos="fade-up" data-aos-duration="1000">
-            <h2 class="text-center mb-4 fw-bold text-primary">I build backends that handle millions.</h2>
-            <p class="lead text-center mx-auto" style="max-width: 800px;">
-               I'm a backend engineer with 2.5 years of production experience  at Bajaj Finserv, where I led a team of 4 to ship the IRCTC Rail Ticket Booking feature, optimizing APIs from 1s to under 100ms and handling 100+ TPS at peak. Currently pursuing my MSc in Computer Science at University College, Dublin. I specialize in Java, Spring Boot, Kafka, and cloud-native systems on AWS and Kubernetes.
-            </p>
-        </div>
-    </section>
-
-    <!-- 2. ABOUT ME SECTION (with Count Up Animation) - TEXT MODIFIED -->
-    <section class="section-padding bg-white" id="about">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Academic and Professional Foundation</h2>
-            <div class="row align-items-center">
-                
-                <div class="col-lg-10 mx-auto">
-                    <!-- Text stripped of ** -->
-                    <p class="lead text-center mb-5" style="max-width: 800px;" data-aos="fade-up" data-aos-delay="100">
-                        My foundation is built on strong academic achievements, including a Master's in Computer Science from University College Dublin focusing on distributed systems, and a B.Tech degree from Vellore Institute of Technology (3.9/4.2 GPA). My professional journey is characterized by scaling core FinTech platforms and optimizing backend performance.
-                    </p>
-                    
-                    <div class="row text-center" id="stats-container">
-                        <!-- Stat 1: B.Tech GPA -->
-                        <div class="col-md-4 mb-4" data-aos="fade-right">
-                            <div class="stat-box">
-                                <h3 id="stat-gpa" data-target="3.9" data-speed="2000">0</h3>
-                                <p class="text-secondary">B.TECH GPA (OUT OF 4.2)</p>
-                            </div>
-                        </div>
-                        <!-- Stat 2: Latency Reduction (40%) -->
-                         <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="150">
-                            <div class="stat-box">
-                                <h3 id="stat-latency" data-target="40" data-speed="1500">0%</h3>
-                                <p class="text-secondary">Latency Reduction</p>
-                            </div>
-                        </div>
-                        <!-- Stat 3: Deployment Acceleration (25%) -->
-                        <div class="col-md-4 mb-4" data-aos="fade-left" data-aos-delay="300">
-                            <div class="stat-box">
-                                <h3 id="stat-deployment" data-target="25" data-speed="1500">0%</h3>
-                                <p class="text-secondary">Vulnerability Patched</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. EXPERIENCE SECTION (Hyper-Polished Timeline) - TEXT MODIFIED -->
-    <section class="section-padding" id="experience">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Professional Journey</h2>
-            <div class="timeline">
-
-                 
-                <!-- Role 1: Software Engineering Intern at Deciphex -->
-                <div class="row timeline-item" data-aos="fade-left">
-                    <div class="timeline-marker" style="background-color: var(--secondary-color);"></div>
-                    <div class="col-md-6 d-none d-md-block"></div>
-                    <div class="col-md-6 text-md-start mb-4">
-                        <div class="timeline-item-content">
-                            <h4 class="fw-bold text-primary">Software Engineering Intern</h4>
-                            <p class="text-muted mb-2">Deciphex, Ireland | May 2026 - Present</p>
-                            <ul class="list-unstyled">
-                                <!-- Text stripped of ** -->
-                                <li>Currently building and scaling as a backend intern on Patholytix and Diagnexia Platform.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Role 1: Senior Software Engineer -->
-                <div class="row timeline-item" data-aos="fade-right">
-                    <div class="timeline-marker"></div>
-                    <div class="col-md-6 text-md-end mb-4">
-                        <div class="timeline-item-content">
-                            <h4 class="fw-bold text-primary">Senior Software Engineer</h4>
-                            <p class="text-muted mb-2">Bajaj Finserv Limited, India | Jan 2025 - Aug 2025</p>
-                            <ul class="list-unstyled">
-                                <!-- Text stripped of ** -->
-                                <li> Led a team of 4 engineers to design and implement the backend architecture of the IRCTC Rail Ticket Booking feature on the Bajaj app.</li>
-                                <li> Optimized backend workflows and API performance, cutting latency by 40%, which drove a 35% rise in adoption, 5% more repeat transactions, and 20% fewer support queries.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6"></div>
-                </div>
-
-                <!-- Role 2: Software Engineer -->
-                <div class="row timeline-item" data-aos="fade-left">
-                    <div class="timeline-marker" style="background-color: var(--secondary-color);"></div>
-                    <div class="col-md-6 d-none d-md-block"></div>
-                    <div class="col-md-6 text-md-start mb-4">
-                        <div class="timeline-item-content">
-                            <h4 class="fw-bold text-primary">Software Engineer</h4>
-                            <p class="text-muted mb-2">Bajaj Finserv Limited, India | Jul 2023 - Dec 2024</p>
-                            <ul class="list-unstyled">
-                                <!-- Text stripped of ** -->
-                                <li> Enhanced codebase scalability and security by adding security checks and removing redundant code, reducing vulnerabilities by 30% and improving deployment speed by 25% using CI/CD.</li>
-                                <li> Developed a high-performance REST API for the Payments Team to calculate convenience fees on the checkout page, achieving an average latency of 5ms even during peak traffic exceeding 100 TPS.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Role 3: Software Engineering Intern -->
-                <div class="row timeline-item" data-aos="fade-right">
-                    <div class="timeline-marker"></div>
-                    <div class="col-md-6 text-md-end mb-4">
-                        <div class="timeline-item-content">
-                            <h4 class="fw-bold text-primary">Software Engineering Intern</h4>
-                            <p class="text-muted mb-2">Bajaj Finserv Limited, India | Jan 2023 - Jun 2023</p>
-                            <ul class="list-unstyled">
-                                <!-- Text stripped of ** -->
-                                <li> Optimized existing APIs for tracking customer journeys across various Bajaj Finserv products. Reduced latency to under 100ms, improved performance by 45%, and cut the codebase by over 50%.</li>
-                                <li> Enhanced the Tracker Feature API by optimizing code, implementing caching, and reducing latency from 1s to an average of 98ms.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3.5. AWARDS SECTION - TEXT MODIFIED -->
-    <section class="section-padding bg-light" id="awards">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Awards & Recognition</h2>
-            <div class="row g-4 justify-content-center">
-                 <!-- Award 3: UCD Student Advantage Award 2026 -->
-                <div class="col-md-6 col-lg-5" data-aos="flip-up" data-aos-delay="200">
-                    <div class="card h-100 shadow border-2 border-secondary">
-                        <div class="card-body">
-                            <h4 class="card-title text-primary fw-bold"><i class="fas fa-lightbulb me-2"></i>UCD Advantage Award 2026</h4>
-                            <p class="card-subtitle mb-2 text-muted">University College Dublin, Ireland | April 2026</p>
-                            <!-- Text stripped of ** -->
-                            <p class="card-text">Awarded in recognition of extracurricular achievement, professional development, leadership, and engagement in co-curricular activities at University College Dublin.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Award 1: BFL Certified Prodigy -->
-                <div class="col-md-6 col-lg-5" data-aos="flip-up">
-                    <div class="card h-100 shadow border-2 border-primary">
-                        <div class="card-body">
-                            <h4 class="card-title text-primary fw-bold"><i class="fas fa-medal me-2"></i>BFL Certified Prodigy</h4>
-                            <p class="card-subtitle mb-2 text-muted">Bajaj Finserv Limited, India | July 2025</p>
-                            <!-- Text stripped of ** -->
-                            <p class="card-text">Awarded for outstanding contributions to the IRCTC Rail Ticket Booking project, becoming the youngest team member to achieve this recognition.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Award 2: BFL Problem Solver -->
-                <div class="col-md-6 col-lg-5" data-aos="flip-up" data-aos-delay="200">
-                    <div class="card h-100 shadow border-2 border-secondary">
-                        <div class="card-body">
-                            <h4 class="card-title text-primary fw-bold"><i class="fas fa-lightbulb me-2"></i>BFL Problem Solver</h4>
-                            <p class="card-subtitle mb-2 text-muted">Bajaj Finserv Limited, India | January 2025</p>
-                            <!-- Text stripped of ** -->
-                            <p class="card-text">Recognized for significant contributions to Payment Services and horizontal middle-layer services, highlighting technical excellence and impact on core backend systems.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. UCD RELEVANT COURSEWORK SECTION -->
-    <section class="section-padding" id="coursework">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">UCD Relevant Coursework</h2>
-            <p class="lead text-center mx-auto mb-5 text-muted" style="max-width: 800px;" data-aos="fade-up" data-aos-delay="100">
-                Focus areas from my Master's in Computer Science at University College Dublin, emphasizing high-level system architecture and performance optimization.
-            </p>
-            <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
-                <!-- Coursework Icons -->
-                <span class="skill-badge bg-primary text-white"><i class="fas fa-cloud me-2"></i>Cloud Computing</span>
-                <span class="skill-badge bg-primary text-white"><i class="fas fa-laptop-code me-2"></i>Distributed Systems</span>
-                <span class="skill-badge bg-primary text-white"><i class="fas fa-tachometer-alt me-2"></i>Performance of Computer Systems</span>
-                <span class="skill-badge bg-primary text-white"><i class="fas fa-sort-numeric-up me-2"></i>Advanced Data Structures and Algorithms</span>
-                <span class="skill-badge bg-primary text-white"><i class="fas fa-project-diagram me-2"></i>Software Engineering</span>
-                <span class="skill-badge bg-primary text-white"><i class="fas fa-shield-alt me-2"></i>Information Security</span>
-                <span class="skill-badge bg-primary text-white"><i class="fas fa-robot me-2"></i>Generative AI</span>
-                <span class="skill-badge bg-primary text-white"><i class="fas fa-user-tie me-2"></i>Agent Oriented Software</span>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- 5. TECHNICAL PROFILE SECTION -->
-    <section class="section-padding bg-light" id="skills">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Core Expertise</h2>
-            
-            <div class="row text-center g-4">
-                <!-- Group 1: Languages & Data -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-right">
-                    <h5 class="skill-group-title">Languages & Data</h5>
-                    <span class="skill-badge bg-primary text-white"><i class="fab fa-java me-2"></i>Java</span>
-                    <span class="skill-badge bg-primary text-white"><i class="fab fa-cuttlefish me-2"></i>C++</span>
-                    <span class="skill-badge bg-primary text-white"><i class="fab fa-python me-2"></i>Python</span>
-                    <span class="skill-badge bg-primary text-white"><i class="fas fa-database me-2"></i>MySQL</span>
-                </div>
-                
-                <!-- Group 2: Frameworks & Messaging -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-up">
-                    <h5 class="skill-group-title">Frameworks & Messaging</h5>
-                    <span class="skill-badge bg-success-impact text-white"><i class="fas fa-leaf me-2"></i>Spring Boot</span>
-                    <span class="skill-badge bg-success-impact text-white"><i class="fas fa-network-wired me-2"></i>Microservices</span>
-                    <span class="skill-badge bg-success-impact text-white"><i class="fas fa-message me-2"></i>Apache Kafka</span>
-                    <span class="skill-badge bg-success-impact text-white"><i class="fas fa-server me-2"></i>REST APIs</span>
-                    <span class="skill-badge bg-success-impact text-white"><i class="fas fa-project-diagram me-2"></i>gRPC</span>
-                </div>
-                
-                <!-- Group 3: Cloud, Infra & Certs -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <h5 class="skill-group-title">Cloud, Infra & Certs</h5>
-                    <span class="skill-badge bg-info text-dark"><i class="fas fa-award me-2"></i>AWS Cloud Practitioner</span>
-                    <span class="skill-badge bg-info text-dark"><i class="fab fa-aws me-2"></i>AWS</span>
-                    <span class="skill-badge bg-info text-dark"><i class="fab fa-microsoft me-2"></i>Azure</span>
-                    <span class="skill-badge bg-info text-dark"><i class="fas fa-cubes me-2"></i>Kubernetes</span>
-                    <span class="skill-badge bg-info text-dark"><i class="fab fa-docker me-2"></i>Docker</span>
-                </div>
-                
-                <!-- Group 4: Concepts & Tools -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-left">
-                    <h5 class="skill-group-title">Concepts & Tools</h5>
-                    <span class="skill-badge bg-secondary text-white"><i class="fas fa-brain me-2"></i>DSA</span>
-                    <span class="skill-badge bg-secondary text-white"><i class="fas fa-object-group me-2"></i>OOPS / SDLC</span>
-                    <span class="skill-badge bg-secondary text-white"><i class="fas fa-wrench me-2"></i>IntelliJ</span>
-                    <span class="skill-badge bg-secondary text-white"><i class="fas fa-code me-2"></i>VS Code</span>
-                    <span class="skill-badge bg-secondary text-white"><i class="fab fa-git-alt me-2"></i>Git / Jira</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. PROJECTS SECTION - TEXT MODIFIED -->
-    <section class="section-padding bg-white" id="projects">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-down">Projects</h2>
-            <div class="row g-4">
-                
-                <!-- Project 1: Stay Safe -->
-                <div class="col-lg-6">
-                    <div class="card h-100 shadow-lg border-0" data-aos="zoom-in">
-                        <div class="card-body">
-                            <h4 class="card-title text-primary"><i class="fas fa-map-marked-alt me-2"></i>StaySafe</h4>
-                            <!-- Text stripped of ** -->
-                            <p class="card-text">Developed a Spring Boot web app with Google Maps integration for crowdsourced, real-time safety mapping for international students.</p>
-                            <p class="card-text small text-muted">
-                                <!-- Text stripped of ** -->
-                                Key Features: Used scalable REST APIs with a NOSQL database. Implemented user authentication via Google OAuth 2.0 and applied best practices like Lombok and Google Java Format (Spotless Apply) for clean code. Designed the backend for future live updates.
-                            </p>
-                            <a href="https://github.com/DEV-AB-03/StaySafe" class="btn btn-outline-dark mt-3 rounded-pill" target="_blank"><i class="fab fa-github me-2"></i>View on GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2: Web Application in AWS EKS -->
-                <div class="col-lg-6">
-                    <div class="card h-100 shadow-lg border-0" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="card-body">
-                            <h4 class="card-title text-primary"><i class="fas fa-box-open me-2"></i>SavorSafe</h4>
-                            <!-- Text stripped of ** -->
-                            <p class="card-text">A microservices-based application for food safety management, featuring recipe storage, inventory tracking, notifications, and OAuth authentication. Built with Spring Boot, Java, Maven, and Gradle. Supports Docker containerization and API documentation via Swagger.</p>
-                            <p class="card-text small text-muted">
-                                <!-- Text stripped of ** -->
-                                Tech Stack: Java, Spring Boot, Maven, Gradle, Docker, Kuberneted, Google OAuth 2.0.
-                            </p>
-                            <a href="https://github.com/DEV-AB-03/SavorSafe" class="btn btn-outline-dark mt-3 rounded-pill" target="_blank"><i class="fab fa-github me-2"></i>View on GitHub</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. CONTACT SECTION - TEXT MODIFIED (Removed ** and changed <strong> to <span> for labels) -->
-    <section class="section-padding text-center" id="contact">
-        <div class="container" data-aos="fade-up">
-            <h2 class="mb-4 fw-bold">Let's Connect</h2>
-            <!-- Text stripped of ** -->
-            <p class="lead mb-4">
-                Currently based in Dublin, Ireland while pursuing my Master's at UCD. Find me on the platforms below or reach out for high-impact roles.
-            </p>
-            <p class="mb-2">
-                <!-- Changed <strong> to <span class="fw-bold"> -->
-                <span class="text-primary fw-bold"><i class="fas fa-envelope me-2"></i>Email:</span> aniketbaidya03@gmail.com
-            </p>
-            <p class="mb-2">
-                <!-- Changed <strong> to <span class="fw-bold"> -->
-                <span class="text-primary fw-bold"><i class="fab fa-linkedin me-2"></i>LinkedIn:</span> <a href="https://linkedin.com/in/aniketbaidya03" target="_blank" class="text-reset">linkedin.com/in/aniketbaidya03</a>
-            </p>
-            <p class="mb-4">
-                <!-- Changed <strong> to <span class="fw-bold"> -->
-                <span class="text-primary fw-bold"><i class="fab fa-github me-2"></i>GitHub:</span> <a href="https://github.com/DEV-AB-03" target="_blank" class="text-reset">github.com/DEV-AB-03</a>
-            </p>
-            <p class="mb-4">
-                <!-- Changed <strong> to <span class="fw-bold"> -->
-                <span class="text-primary fw-bold"><i class="fas fa-laptop-code me-2"></i>LeetCode:</span> <a href="https://leetcode.com/DEV-AB-03" target="_blank" class="text-reset">leetcode.com/DEV-AB-03</a>
-            </p>
-            <a href="mailto:aniketbaidya03@gmail.com" class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg mx-2 mb-2">Email Me</a>
-            <a href="https://linkedin.com/in/aniketbaidya03" target="_blank" class="btn btn-outline-dark btn-lg rounded-pill px-5 mx-2 mb-2">Connect on LinkedIn</a>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-dark text-white text-center py-4">
-        <div class="container">
-            <p class="mb-0 small">&copy; 2026 Aniket Baidya.</p>
-        </div>
-    </footer>
-
-    <!-- JS dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // --- 1. Global Initialization and Scroll Progress ---
-        document.addEventListener('DOMContentLoaded', () => {
-            startTypingLoop();
-            window.addEventListener('scroll', updateScrollProgress);
-            updateScrollProgress(); // Initial call
-        });
-
-        window.onload = function() {
-            AOS.init({
-                duration: 1000, 
-                once: true,
-                mirror: false
-            });
-            setupCountUpObserver();
-            // Ensure dark mode is correctly set up on load
-            initializeTheme(); 
-        };
-
-        function updateScrollProgress() {
-            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPosition = window.scrollY;
-            const progress = (scrollPosition / totalHeight) * 100;
-            document.getElementById('scroll-progress').style.width = progress + '%';
-        }
-
-
-        // --- 2. Dark Mode Toggle Logic (FIXED) ---
-        const toggle = document.getElementById('darkModeToggle'); // Hidden Input
-        const toggleButton = document.getElementById('darkModeButton'); // Visible Label
-        const body = document.body;
-        const toggleIcon = document.getElementById('toggleIcon');
-        
-        // SVG paths for switching the icon (Sun and Moon)
-        const sunPath = "M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z";
-        // Moon Path (FIXED: Uses a path that is fully contained and prevents clipping)
-        const moonPath = "M6.671 0a8 8 0 0 1-6.495 8C-.376 12.985 3.321 16 8 16a8 8 0 0 1 1-15.999V.001A7.973 7.973 0 0 1 6.671 0z";
-
-        function applyTheme() {
-            // Read the current (correctly toggled) state of the hidden checkbox
-            const isDark = toggle.checked;
-            const pathElement = toggleIcon.querySelector('path');
-
-            // Apply body class for visual theme change
-            if (isDark) {
-                body.classList.add('dark-mode');
-                pathElement.setAttribute('d', sunPath); // Show Sun when in Dark Mode
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.classList.remove('dark-mode');
-                pathElement.setAttribute('d', moonPath); // Show Moon when in Light Mode
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        function initializeTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                toggle.checked = true;
-                // Set the icon to Sun initially if dark mode is preferred
-                toggleIcon.querySelector('path').setAttribute('d', sunPath);
-                applyTheme(); // Apply the theme immediately
-            } else {
-                // Default to light mode
-                toggle.checked = false;
-                toggleIcon.querySelector('path').setAttribute('d', moonPath);
-                body.classList.remove('dark-mode');
-            }
-        }
-
-        if (toggleButton) {
-             toggleButton.addEventListener('click', () => {
-                // BUG FIX: Removed the manual toggle `toggle.checked = !toggle.checked;`
-                // Relying on the native <label> behavior to update `toggle.checked` before this function runs.
-                applyTheme();
-             });
-        }
-
-        
-        // --- 3. Advanced Typing Animation ---
-        const typingTextElement = document.getElementById('typing-text');
-        const phrases = ["High-Throughput APIs", "Cloud Native Infrastructure", "Secure System Design", "Distributed Systems"];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function startTypingLoop() {
-            const currentPhrase = phrases[phraseIndex];
-
-            if (!isDeleting) {
-                // Typing
-                typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-
-                if (charIndex === currentPhrase.length) {
-                    isDeleting = true;
-                    setTimeout(startTypingLoop, 1500); // Wait at end
-                } else {
-                    setTimeout(startTypingLoop, 100);
-                }
-            } else {
-                // Deleting
-                typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                    setTimeout(startTypingLoop, 500); // Wait before new phrase
-                } else {
-                    setTimeout(startTypingLoop, 50);
-                }
-            }
-        }
-        
-        // --- 4. Count Up Animation Function ---
-        function startCountUp(element, finalValue, duration, suffix = '') {
-            const startValue = 0;
-            const startTime = performance.now();
-            const isFloat = (finalValue.toString().includes('.') || finalValue % 1 !== 0);
-
-            function updateCounter(timestamp) {
-                const elapsed = timestamp - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                let currentValue = progress * finalValue;
-
-                element.textContent = currentValue.toFixed(isFloat ? 1 : 0) + suffix;
-
-                if (progress < 1) {
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = finalValue.toFixed(isFloat ? 1 : 0) + suffix;
-                }
-            }
-            requestAnimationFrame(updateCounter);
-        }
-
-        // --- 5. Intersection Observer for Count Up ---
-        function setupCountUpObserver() {
-            const statsContainer = document.getElementById('stats-container');
-            const options = {
-                root: null, 
-                rootMargin: '0px',
-                threshold: 0.5 
-            };
-            
-            let hasAnimated = false;
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !hasAnimated) {
-                        const elements = entry.target.querySelectorAll('[data-target]');
-                        elements.forEach(el => {
-                            const target = parseFloat(el.getAttribute('data-target'));
-                            const speed = parseInt(el.getAttribute('data-speed'), 10);
-                            const id = el.id;
-                            let suffix = '';
-
-                            if (id === 'stat-latency' || id === 'stat-deployment') {
-                                suffix = '%';
-                            } else if (id === 'stat-gpa') {
-                                suffix = '/4.2';
-                            }
-                            
-                            startCountUp(el, target, speed, suffix);
-                        });
-                        hasAnimated = true; // Mark as done
-                        observer.unobserve(entry.target);
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-black': '#050505',
+                        'surface': '#111111',
+                        'electric-blue': '#00E5FF',
+                        'impact-green': '#00FF41',
+                        'muted-text': '#D1D5DB',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Syncopate', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
-                });
-            }, options);
-
-            if (statsContainer) {
-                observer.observe(statsContainer);
+                }
             }
         }
     </script>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #050505;
+            color: #F0F0F0;
+            overflow-x: hidden;
+        }
+        .glass {
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-mask {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        canvas#hero-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .magnetic-btn {
+            transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        #custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00E5FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div id="custom-cursor"></div>
+    <canvas id="hero-canvas"></canvas>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-500 py-6 px-6 lg:px-12 flex justify-between items-center" id="main-nav">
+        <div class="font-heading font-bold text-xl tracking-tighter text-white">
+            ANIKET<span class="text-electric-blue">.</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-xs font-heading uppercase tracking-widest text-muted-text">
+            <a href="#about" class="hover:text-electric-blue transition-colors cursor-pointer">About</a>
+            <a href="#awards" class="hover:text-electric-blue transition-colors cursor-pointer">Awards</a>
+            <a href="#experience" class="hover:text-electric-blue transition-colors cursor-pointer">Experience</a>
+            <a href="#skills" class="hover:text-electric-blue transition-colors cursor-pointer">Skills</a>
+            <a href="#certs" class="hover:text-electric-blue transition-colors cursor-pointer">Certs</a>
+            <a href="#projects" class="hover:text-electric-blue transition-colors cursor-pointer">Projects</a>
+            <a href="#contact" class="hover:text-electric-blue transition-colors cursor-pointer">Connect</a>
+        </div>
+        <div class="md:hidden">
+            <!-- Mobile Menu Trigger -->
+            <button id="mobile-menu-btn" class="text-white p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative h-screen w-full flex items-center justify-center px-6 overflow-hidden" id="hero">
+        <div class="text-center z-10">
+            <div class="overflow-hidden mb-4">
+                <h1 class="font-heading text-5xl md:text-8xl font-bold tracking-tighter text-white leading-none" id="hero-name">
+                    Aniket Baidya
+                </h1>
+            </div>
+            <div class="overflow-hidden mb-8">
+                <p class="text-lg md:text-2xl font-light text-muted-text tracking-wide" id="hero-title">
+                    Software Engineer <span class="text-electric-blue">|</span> Backend Architect <span class="text-electric-blue">|</span> Microservices Expert
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                <a href="#experience" class="magnetic-btn px-8 py-4 bg-electric-blue text-deep-black font-heading text-xs font-bold uppercase tracking-widest rounded-full hover:shadow-[0_0_20px_rgba(0,229,255,0.6)] transition-all">
+                    Explore Experience
+                </a>
+                <a href="mailto:aniketbaidya03@gmail.com" class="magnetic-btn px-8 py-4 border border-white/20 text-white font-heading text-xs font-bold uppercase tracking-widest rounded-full hover:bg-white hover:text-deep-black transition-all">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+            <span class="text-[10px] font-heading uppercase tracking-[0.2em] text-muted-text">Scroll</span>
+            <div class="w-px h-12 bg-gradient-to-b from-electric-blue to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT / BENTO SECTION -->
+    <section class="relative py-24 px-6 lg:px-12" id="about">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+                <h2 class="font-heading text-4xl md:text-6xl font-bold text-white tracking-tighter" id="about-title">
+                    About <span class="text-electric-blue">Me.</span>
+                </h2>
+                <p class="max-w-md text-muted-text text-sm leading-relaxed">
+                    A backend engineer specializing in high-throughput systems and cloud-native architectures. Currently pursuing MSc in Computer Science at University College Dublin.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[200px]">
+                <!-- Main Summary Card -->
+                <div class="md:col-span-2 md:row-span-2 glass p-8 rounded-3xl flex flex-col justify-end group hover:border-electric-blue/50 transition-colors duration-500 overflow-hidden relative">
+                    <div class="absolute top-0 right-0 p-6 text-electric-blue opacity-20 font-heading text-6xl font-bold">01</div>
+                    <p class="text-lg text-white leading-relaxed relative z-10">
+                        I'm a backend engineer with <span class="text-electric-blue">2.5 years of production experience</span> at Bajaj Finserv, where I led a team of 4 to ship the IRCTC Rail Ticket Booking feature, optimizing APIs from 1s to under 100ms and handling 100+ TPS at peak.
+                    </p>
+                </div>
+
+                <!-- Stat: Latency -->
+                <div class="md:col-span-2 glass p-8 rounded-3xl flex flex-col justify-center items-center group hover:border-impact-green/50 transition-colors duration-500">
+                    <span class="text-4xl font-heading font-bold text-impact-green" data-target="40" data-suffix="%">0</span>
+                    <span class="text-[10px] font-heading uppercase tracking-widest text-muted-text mt-2">Latency Reduction</span>
+                </div>
+
+                <!-- Academic Info -->
+                <div class="md:col-span-2 glass p-8 rounded-3xl flex items-center justify-between group hover:border-electric-blue/50 transition-colors duration-500">
+                    <div class="flex flex-col">
+                        <h4 class="text-white font-bold font-heading text-sm uppercase mb-1">Education</h4>
+                        <p class="text-muted-text text-xs">MSc Computer Science, UCD</p>
+                    </div>
+                    <div class="text-electric-blue">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 6 3 6 3s3 0 6-3v-5"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AWARDS SECTION -->
+    <section class="relative py-24 px-6 lg:px-12" id="awards">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+                <h2 class="font-heading text-4xl md:text-6xl font-bold text-white tracking-tighter" id="awards-title">
+                    Accolades <span class="text-electric-blue">& Honors.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Award 1 -->
+                <div class="glass p-8 rounded-3xl hover:border-electric-blue/50 transition-all duration-500 group relative overflow-hidden">
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-electric-blue/10 blur-2xl rounded-full group-hover:bg-electric-blue/20 transition-all"></div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 rounded-xl bg-electric-blue/10 text-electric-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.5 15.5 12 12 15.5 15.5"></polyline><line x1="12" y1="18" x2="12" y2="22"></line></svg>
+                        </div>
+                        <span class="text-[10px] font-heading uppercase tracking-widest text-muted-text">Apr 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-electric-blue transition-colors">UCD Advantage Award</h3>
+                    <p class="text-muted-text text-xs mb-4">University College Dublin</p>
+                    <p class="text-sm text-white/70 leading-relaxed">
+                        Awarded for exceptional extracurricular achievement, professional development, and leadership engagement.
+                    </p>
+                </div>
+
+                <!-- Award 2 -->
+                <div class="glass p-8 rounded-3xl hover:border-impact-green/50 transition-all duration-500 group relative overflow-hidden">
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-impact-green/10 blur-2xl rounded-full group-hover:bg-impact-green/20 transition-all"></div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 rounded-xl bg-impact-green/10 text-impact-green">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"></path><path d="M17 10l-2-2-2 2-2-2-2 2-2-2"></path></svg>
+                        </div>
+                        <span class="text-[10px] font-heading uppercase tracking-widest text-muted-text">Jul 2025</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-impact-green transition-colors">BFL Certified Prodigy</h3>
+                    <p class="text-muted-text text-xs mb-4">Bajaj Finserv Limited</p>
+                    <p class="text-sm text-white/70 leading-relaxed">
+                        Recognized for outstanding contributions and technical excellence in the IRCTC Rail Ticket Booking project.
+                    </p>
+                </div>
+
+                <!-- Award 3 -->
+                <div class="glass p-8 rounded-3xl hover:border-electric-blue/50 transition-all duration-500 group relative overflow-hidden">
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-electric-blue/10 blur-2xl rounded-full group-hover:bg-electric-blue/20 transition-all"></div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 rounded-xl bg-electric-blue/10 text-electric-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M22 12h-2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                        </div>
+                        <span class="text-[10px] font-heading uppercase tracking-widest text-muted-text">Jan 2025</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-electric-blue transition-colors">BFL Problem Solver</h3>
+                    <p class="text-muted-text text-xs mb-4">Bajaj Finserv Limited</p>
+                    <p class="text-sm text-white/70 leading-relaxed">
+                        Awarded for high-impact contributions to Payment Services and horizontal middle layer services.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section class="relative py-24 px-6 lg:px-12 overflow-hidden" id="experience">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-heading text-4xl md:text-6xl font-bold text-white tracking-tighter text-center mb-20" id="exp-title">
+                Professional <span class="text-electric-blue">Journey.</span>
+            </h2>
+
+            <div class="relative">
+                <!-- The Lit-up Line -->
+                <div class="absolute left-1/2 top-0 w-px h-full bg-white/10 -translate-x-1/2">
+                    <div id="timeline-progress" class="absolute top-0 left-0 w-full bg-electric-blue transition-all duration-100 h-0"></div>
+                </div>
+
+                <div class="space-y-24">
+                    <!-- Role 1: Deciphex -->
+                    <div class="relative flex items-center justify-between w-full group">
+                        <div class="w-1/2 pr-12 hidden md:block"></div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-deep-black border-2 border-electric-blue z-10 group-hover:scale-150 transition-transform"></div>
+                        <div class="w-full md:w-1/2 pl-12 md:pl-0">
+                            <div class="glass p-8 rounded-3xl hover:border-electric-blue/50 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+                                <span class="text-[10px] font-heading uppercase tracking-widest text-electric-blue mb-2 block">May 2026 - Present</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Software Engineering Intern</h3>
+                                <p class="text-muted-text text-sm mb-4">Deciphex, Ireland</p>
+                                <p class="text-sm text-white/80 leading-relaxed">
+                                    Currently building and scaling as a backend intern on <span class="text-white font-semibold">Patholytix</span> and <span class="text-white font-semibold">Diagnexia Platform</span>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role 2: Senior SE @ Bajaj -->
+                    <div class="relative flex items-center justify-between w-full group">
+                        <div class="w-full md:w-1/2 pr-12 text-right">
+                            <div class="glass p-8 rounded-3xl hover:border-electric-blue/50 transition-all duration-500 transform -translate-x-4 group-hover:translate-x-0">
+                                <span class="text-[10px] font-heading uppercase tracking-widest text-electric-blue mb-2 block">Jan 2025 - Aug 2025</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Senior Software Engineer</h3>
+                                <p class="text-muted-text text-sm mb-4">Bajaj Finserv Limited, India</p>
+                                <ul class="text-sm text-white/80 space-y-3 text-right">
+                                    <li>Led a team of 4 engineers to design and implement the backend architecture of the IRCTC Rail Ticket Booking feature.</li>
+                                    <li>Optimized backend workflows and API performance, cutting latency by <span class="text-impact-green font-bold">40%</span>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-deep-black border-2 border-electric-blue z-10 group-hover:scale-150 transition-transform"></div>
+                        <div class="w-1/2 pl-12 hidden md:block"></div>
+                    </div>
+
+                    <!-- Role 3: SE @ Bajaj -->
+                    <div class="relative flex items-center justify-between w-full group">
+                        <div class="w-1/2 pr-12 hidden md:block"></div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-deep-black border-2 border-electric-blue z-10 group-hover:scale-150 transition-transform"></div>
+                        <div class="w-full md:w-1/2 pl-12 md:pl-0">
+                            <div class="glass p-8 rounded-3xl hover:border-electric-blue/50 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+                                <span class="text-[10px] font-heading uppercase tracking-widest text-electric-blue mb-2 block">Jul 2023 - Dec 2024</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Software Engineer</h3>
+                                <p class="text-muted-text text-sm mb-4">Bajaj Finserv Limited, India</p>
+                                <ul class="text-sm text-white/80 space-y-3">
+                                    <li>Enhanced codebase scalability and security, reducing vulnerabilities by <span class="text-impact-green font-bold">30%</span> and improving deployment speed by <span class="text-impact-green font-bold">25%</span>.</li>
+                                    <li>Developed high-performance REST API for Payments, achieving average latency of <span class="text-impact-green font-bold">5ms</span> at 100+ TPS.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role 4: Intern @ Bajaj -->
+                    <div class="relative flex items-center justify-between w-full group">
+                        <div class="w-full md:w-1/2 pr-12 text-right">
+                            <div class="glass p-8 rounded-3xl hover:border-electric-blue/50 transition-all duration-500 transform -translate-x-4 group-hover:translate-x-0">
+                                <span class="text-[10px] font-heading uppercase tracking-widest text-electric-blue mb-2 block">Jan 2023 - Jun 2023</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Software Engineering Intern</h3>
+                                <p class="text-muted-text text-sm mb-4">Bajaj Finserv Limited, India</p>
+                                <ul class="text-sm text-white/80 space-y-3 text-right">
+                                    <li>Optimized existing APIs for tracking customer journeys, reducing latency to <span class="text-impact-green font-bold">under 100ms</span>.</li>
+                                    <li>Enhanced Tracker Feature API, reducing latency from 1s to <span class="text-impact-green font-bold">98ms</span>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-deep-black border-2 border-electric-blue z-10 group-hover:scale-150 transition-transform"></div>
+                        <div class="w-1/2 pl-12 hidden md:block"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section class="relative py-24 px-6 lg:px-12 bg-surface/50" id="skills">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-heading text-4xl md:text-6xl font-bold text-white tracking-tighter text-center mb-20" id="skills-title">
+                Technical <span class="text-electric-blue">Arsenal.</span>
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Languages -->
+                <div class="group p-8 glass rounded-3xl hover:border-electric-blue/50 transition-all duration-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 rounded-xl bg-electric-blue/10 text-electric-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </div>
+                        <h3 class="font-heading text-sm font-bold text-white uppercase tracking-widest">Languages</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-electric-blue/50 group-hover:text-electric-blue transition-all">Java</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-electric-blue/50 group-hover:text-electric-blue transition-all">C++</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-electric-blue/50 group-hover:text-electric-blue transition-all">Python</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-electric-blue/50 group-hover:text-electric-blue transition-all">MySQL</span>
+                    </div>
+                </div>
+
+                <!-- Frameworks -->
+                <div class="group p-8 glass rounded-3xl hover:border-impact-green/50 transition-all duration-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 rounded-xl bg-impact-green/10 text-impact-green">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <h3 class="font-heading text-sm font-bold text-white uppercase tracking-widest">Frameworks</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-impact-green/50 group-hover:text-impact-green transition-all">Spring Boot</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-impact-green/50 group-hover:text-impact-green transition-all">Microservices</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-impact-green/50 group-hover:text-impact-green transition-all">Apache Kafka</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-impact-green/50 group-hover:text-impact-green transition-all">REST APIs</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-impact-green/50 group-hover:text-impact-green transition-all">gRPC</span>
+                    </div>
+                </div>
+
+                <!-- Cloud -->
+                <div class="group p-8 glass rounded-3xl hover:border-electric-blue/50 transition-all duration-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 rounded-xl bg-electric-blue/10 text-electric-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a3.5 3.5 0 0 0 3.5-3.5H21"></path><path d="M3 12a12 12 0 0 1 18 0 12 12 0 0 1-18 0Z"></path><path d="M12 7v10"></path><path d="M7 12h10"></path></svg>
+                        </div>
+                        <h3 class="font-heading text-sm font-bold text-white uppercase tracking-widest">Infrastructure</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-electric-blue/50 group-hover:text-electric-blue transition-all">AWS</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-electric-blue/50 group-hover:text-electric-blue transition-all">Azure</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-electric-blue/50 group-hover:text-electric-blue transition-all">Kubernetes</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-electric-blue/50 group-hover:text-electric-blue transition-all">Docker</span>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="group p-8 glass rounded-3xl hover:border-white/50 transition-all duration-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 rounded-xl bg-white/10 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.77 7.77l-6.29 6.29a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1 7.77-7.77z"></path></svg>
+                        </div>
+                        <h3 class="font-heading text-sm font-bold text-white uppercase tracking-widest">Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-white/50 group-hover:text-white transition-all">Git / Jira</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-white/50 group-hover:text-white transition-all">IntelliJ</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-white/50 group-hover:text-white transition-all">VS Code</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs border border-white/10 group-hover:border-white/50 group-hover:text-white transition-all">DSA / OOPS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <section class="relative py-24 px-6 lg:px-12" id="certs">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-heading text-4xl md:text-6xl font-bold text-white tracking-tighter text-center mb-20" id="certs-title">
+                Verified <span class="text-electric-blue">Expertise.</span>
+            </h2>
+
+            <div class="flex justify-center">
+                <div class="group glass p-8 rounded-3xl hover:border-electric-blue/50 transition-all duration-500 flex items-center gap-8 max-w-2xl">
+                    <div class="p-4 rounded-2xl bg-white/5 group-hover:bg-electric-blue/10 transition-all">
+                        <!-- AWS Logo Placeholder / Simplified SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"></path><path d="M12 12L2 12"></path><path d="M12 12l10 0"></path><path d="M12 12v10"></path><path d="M12 12V2"></path></svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <h3 class="text-xl font-bold text-white group-hover:text-electric-blue transition-colors">AWS Certified Cloud Practitioner</h3>
+                        <p class="text-muted-text text-sm">Amazon Web Services (AWS) &bull; Jun 2022</p>
+                    </div>
+                    <div class="ml-auto">
+                        <a href="#" class="text-electric-blue hover:underline text-xs font-heading uppercase tracking-widest">Verify &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="relative py-24 px-6 lg:px-12" id="projects">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-heading text-4xl md:text-6xl font-bold text-white tracking-tighter text-center mb-20" id="projects-title">
+                Selected <span class="text-electric-blue">Works.</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Project 1: StaySafe -->
+                <div class="group relative overflow-hidden rounded-3xl glass aspect-video cursor-pointer" data-project="StaySafe">
+                    <div class="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/40 to-transparent z-10 opacity-80 group-hover:opacity-40 transition-opacity duration-500"></div>
+                    <img src="p1.jpg" alt="StaySafe" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-heading text-2xl font-bold text-white mb-2">StaySafe</h3>
+                        <p class="text-muted-text text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                            Crowdsourced, real-time safety mapping for international students. Built with Spring Boot and Google Maps.
+                        </p>
+                        <div class="flex gap-3">
+                            <span class="px-2 py-1 rounded-md bg-electric-blue/20 text-electric-blue text-[10px] font-bold uppercase tracking-wider border border-electric-blue/30">Spring Boot</span>
+                            <span class="px-2 py-1 rounded-md bg-electric-blue/20 text-electric-blue text-[10px] font-bold uppercase tracking-wider border border-electric-blue/30">NOSQL</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/DEV-AB-03/StaySafe" target="_blank" class="absolute top-6 right-6 z-20 p-3 rounded-full glass text-white hover:text-electric-blue transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 0-5-4.844-5-6a4 4 0 0 1 4-4 4 4 0 0 1 4 4 4 4 0 0 1-4 4z"></path><path d="M9 19c-5.5 0-5.5-4.844-5-10a4 4 0 0 1 4-4 4 4 0 0 1 4 4 4 4 0 0 1-4 4z"></path><path d="M15 19c-5.5 0-5.5-4.844-5-10a4 4 0 0 1 4-4 4 4 0 0 1 4 4 4 4 0 0 1-4 4z"></path><path d="M15 19c5 0 5-4.844 5-6a4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Project 2: SavorSafe -->
+                <div class="group relative overflow-hidden rounded-3xl glass aspect-video cursor-pointer" data-project="SavorSafe">
+                    <div class="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/40 to-transparent z-10 opacity-80 group-hover:opacity-40 transition-opacity duration-500"></div>
+                    <img src="p2.png" alt="SavorSafe" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-heading text-2xl font-bold text-white mb-2">SavorSafe</h3>
+                        <p class="text-muted-text text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                            Microservices-based food safety management with real-time inventory tracking and OAuth.
+                        </p>
+                        <div class="flex gap-3">
+                            <span class="px-2 py-1 rounded-md bg-impact-green/20 text-impact-green text-[10px] font-bold uppercase tracking-wider border border-impact-green/30">K8s</span>
+                            <span class="px-2 py-1 rounded-md bg-impact-green/20 text-impact-green text-[10px] font-bold uppercase tracking-wider border border-impact-green/30">Docker</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/DEV-AB-03/SavorSafe" target="_blank" class="absolute top-6 right-6 z-20 p-3 rounded-full glass text-white hover:text-electric-blue transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 0-5-4.844-5-6a4 4 0 0 1 4-4 4 4 0 0 1 4 4 4 4 0 0 1-4 4z"></path><path d="M9 19c-5.5 0-5.5-4.844-5-10a4 4 0 0 1 4-4 4 4 0 0 1 4 4 4 4 0 0 1-4 4z"></path><path d="M15 19c-5.5 0-5.5-4.844-5-10a4 4 0 0 1 4-4 4 4 0 0 1 4 4 4 4 0 0 1-4 4z"></path><path d="M15 19c5 0 5-4.844 5-6a4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CONTACT SECTION -->
+    <section class="relative py-32 px-6 lg:px-12 text-center overflow-hidden" id="contact">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-heading text-5xl md:text-8xl font-bold text-white tracking-tighter mb-12" id="contact-title">
+                Let's <span class="text-electric-blue">Connect.</span>
+            </h2>
+            <p class="text-muted-text text-lg mb-16 max-w-2xl mx-auto">
+                Currently based in Dublin, Ireland while pursuing my Master's at UCD. I'm always open to discussing high-impact roles and architectural challenges.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-8 mb-20">
+                <a href="mailto:aniketbaidya03@gmail.com" class="magnetic-btn px-8 py-4 glass rounded-full text-white font-heading text-xs uppercase tracking-widest hover:text-electric-blue transition-colors">
+                    Email Me
+                </a>
+                <a href="https://linkedin.com/in/aniketbaidya03" target="_blank" class="magnetic-btn px-8 py-4 glass rounded-full text-white font-heading text-xs uppercase tracking-widest hover:text-electric-blue transition-colors">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/DEV-AB-03" target="_blank" class="magnetic-btn px-8 py-4 glass rounded-full text-white font-heading text-xs uppercase tracking-widest hover:text-electric-blue transition-colors">
+                    GitHub
+                </a>
+            </div>
+
+            <!-- Massive Footer Text -->
+            <div class="absolute bottom-0 left-0 w-full text-center pointer-events-none opacity-10 whitespace-nowrap overflow-hidden">
+                <span class="font-heading text-[15vw] font-bold text-white uppercase tracking-tighter">
+                    BACKEND ARCHITECT
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- JS Dependencies -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+
+    <!-- Core Logic -->
+    <script src="assets/js/core.js"></script>
+    <script src="assets/js/three-scene.js"></script>
+    <script src="assets/js/animations.js"></script>
 </body>
 </html>
