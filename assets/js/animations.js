@@ -31,26 +31,29 @@ document.addEventListener('DOMContentLoaded', () => {
 function initHeroAnimations() {
     const tl = gsap.timeline();
 
-    tl.from('#hero-name', {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        ease: 'power4.out',
-        skewY: 7,
-    })
-        .from('#hero-title', {
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-        }, "-=0.5")
-        .from('.magnetic-btn', {
-            scale: 0,
-            opacity: 0,
-            stagger: 0.2,
-            duration: 0.5,
-            ease: 'back.out(1.7)',
-        }, "-=0.3");
+    tl.fromTo('#hero-name',
+        { y: 100, opacity: 0, skewY: 7 },
+        { y: 0, opacity: 1, skewY: 0, duration: 1, ease: 'power4.out' }
+    )
+        .fromTo('#hero-title',
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+            "-=0.5"
+        )
+        .fromTo('.magnetic-btn',
+            { scale: 0, opacity: 0 },
+            {
+                scale: 1,
+                opacity: 1,
+                stagger: 0.2,
+                duration: 0.5,
+                ease: 'back.out(1.7)',
+                // Release GSAP's grip on transform/opacity after animation completes
+                // so magnetic hover effects and cursor interactions work cleanly
+                clearProps: 'scale,opacity',
+            },
+            "-=0.3"
+        );
 }
 
 function initBentoAnimations() {
@@ -304,4 +307,4 @@ function initMagneticButtons() {
             });
         });
     });
-}c
+}

@@ -42,10 +42,17 @@ function initCustomCursor() {
         });
     });
 
+    // Guard: don't let cursor hover effects fire during the hero entrance animation.
+    // Hero timeline takes ~1.8s total — wait 2s before enabling hover expansion
+    // so GSAP's clearProps has already fired on the buttons.
+    let heroReady = false;
+    setTimeout(() => { heroReady = true; }, 2000);
+
     // Expand cursor on hoverable elements
     const hoverables = document.querySelectorAll('a, button, .glass, .magnetic-btn');
     hoverables.forEach(el => {
         el.addEventListener('mouseenter', () => {
+            if (!heroReady) return;
             gsap.to(cursor, {
                 width: 40,
                 height: 40,
@@ -56,6 +63,7 @@ function initCustomCursor() {
             });
         });
         el.addEventListener('mouseleave', () => {
+            if (!heroReady) return;
             gsap.to(cursor, {
                 width: 20,
                 height: 20,
